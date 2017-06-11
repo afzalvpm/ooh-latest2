@@ -1,0 +1,353 @@
+<!doctype html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>Landing</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="images/logo.png">
+	
+	<!-- CSS STYLES -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="css/notification.css">
+	<link rel="stylesheet" type="text/css" href="css/inspection.css">
+	<link rel="stylesheet" type="text/css" href="css/button.css">
+	<link rel="stylesheet" type="text/css" href="css/jobs.css">
+	<link rel="stylesheet" type="text/css" href="css/signin.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+	
+	
+</head>
+<body>
+	<div class="overflow-scroll">
+		<!-- Background overlay -->
+		<div class="black-opc hide"></div>
+
+		<!-- Fixed header -->
+		<section class="navbar navbar-default navbar-fixed-top" id="header">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<label class="hamburger-menu">
+						<img src="images/hamburger.png">
+					</label>
+					<a class="navbar-brand" href="#">
+						<span class="enterprise-logo">
+							<img src="images/logo.png">
+						</span>
+						<!--<span class="enterprise-name">
+							Outdoor inspection Services Group
+							<span class="enterprise-tagline">
+							Outdoor inspection Services Group
+							</span>
+						</span>-->
+					</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<div class="dropdown">
+								<div class="profile-dropdown" data-toggle="dropdown">
+									<div class="profile-desc">
+										<h5>Admin</h5>
+									</div>
+									<img src="images/dropdown.png" class="dropdown-img">
+								</div>
+								<div class="notification-popup header-notification profile-popup dropdown-menu">
+									<div class="notification-area">
+										<div class="n-desc">
+											<div class="a-profile">
+												<a href="">Sign Out</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		
+		<!-- main wrapper -->
+		<section id="main-wrapper">
+			<!-- sidebar -->
+			<div id="sidebar">
+				<div class="sidebar-list text-left">
+					<ul class="list-unstyled">
+						<li>
+							<a href="/inspection-landing">
+								<img src="images/sidebar/inspection.png" alt="home">
+								<label>inspection</label>
+							</a>
+						</li>
+						<li>
+							<a href="/jobs-landing">
+								<img src="images/sidebar/jobs.png" alt="chat">
+								<label>jobs</label>
+							</a>
+						</li>
+						<li>
+							<a href="/maps-view">
+								<img src="images/sidebar/maps.png" alt="contact">
+								<label>Maps View</label>
+							</a>
+						</li>
+						<li class="active">
+							<a href="/user-landing">
+								<img src="images/sidebar/user.png" alt="profile">
+								<label>Users</label>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- main wrapper -->
+			<div class="container-fluid" id="wrapper-container">
+				<ol class="breadcrumb">
+					<li><a href="#">User</a></li>
+					<li class="active">user Details</li>
+				</ol>
+				<div class="row" id="inspection-data">
+					<div class="Form-section">
+						<form>
+							<h5>User Details</h5>
+							<div class="form-group width49">
+								<label>Name :</label>
+								<input type="text" class="form-control" placeholder="" id="search-name">
+							</div>
+							<div class="form-group width49 pull-right">
+								<label>Email :</label>
+								<input type="text" class="form-control" placeholder="" id="search-email">
+							</div>
+							<!-- <button class="btn btn-default" id="search-job-button">Search</button> -->
+
+							<div class="form-group width49">
+								<label>OIS id :</label>
+								<span id="OISID"></span>
+							</div>
+						</form>
+					</div>
+					<!-- Jobs in progress -->
+					<div id="confirm-section">
+						<div class="booking-details">
+							<div class="dd-data" data-type="WIP">
+								<div class="view-data">
+									<h5>Jobs In Progress</h5>
+								</div>
+								{{!-- <div class="input-group pull-right">
+									<input type="text" class="form-control search-area" placeholder="Search by name / OISA Data">
+									<span class="input-group-btn">
+										<button class="btn btn-default search-job-by-name" type="button">
+											<i class="fa fa-search" aria-hidden="true"></i>
+										</button>
+										<button class="btn btn-default clear-search" type="button">
+											<i class="fa fa-times" aria-hidden="true"></i>
+										</button>
+									</span>
+								</div> --}}
+							</div>
+							<table class="table" data-type="WIP">
+								<thead>
+									<tr>
+										{{!-- <th>Name <i aria-hidden="true"></i> </th> --}}
+										<th>JOB ID</th>
+										<th>SIN</th>
+										<th>Status <i aria-hidden="true"></i> </th>
+										<th>Location</th>
+										<th>State Postal Code</th>
+										<th>End Date <i aria-hidden="true"></i></th>
+									</tr>
+								</thead>
+								<tbody class="job-list" data-type="WIP">
+									
+								</tbody>
+							</table>
+							<nav class="text-center">
+								<ul class="pagination" data-type="WIP">
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<!-- completed jobs -->
+					<div id="confirm-section">
+						<div class="booking-details">
+							<div class="dd-data" data-type="completed">
+								<div class="view-data">
+									<h5>View Completed Jobs</h5>
+								</div>
+								<div class="input-group pull-right">
+									<input type="text" class="form-control search-area" placeholder="Search by name / OISA Data" data-type="completed">
+									<span class="input-group-btn">
+										<button class="btn btn-default search-job-by-name" type="button">
+											<i class="fa fa-search" aria-hidden="true"></i>
+										</button>
+										<button class="btn btn-default clear-search" type="button">
+											<i class="fa fa-times" aria-hidden="true"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+							<table class="table" data-type="completed">
+								<thead>
+									<tr>
+										{{!-- <th>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox">
+												</label>
+											</div>
+										</th> --}}
+										{{!-- <th>Full Name</th> --}}
+										<th>JOB ID</th>
+										<th>SIN</th>
+										<th>TYPE</th>
+										<th>Location</th>
+										<th>State Postal Code</th>
+										<th>Completed date &amp; time</th>
+									</tr>
+								</thead>
+								<tbody class="job-list" data-type="completed">
+									
+								</tbody>
+							</table>
+							<nav class="text-center">
+								<ul class="pagination" data-type="completed">
+									
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<!-- canceled jobs -->
+					<div id="confirm-section">
+						<div class="booking-details">
+							<div class="dd-data" data-type="canceled">
+								<div class="view-data">
+									<h5>View Canceled Jobs</h5>
+								</div>
+								{{!-- <div class="input-group pull-right">
+									<input type="text" class="form-control search-area" placeholder="Search by name / OISA Data">
+									<span class="input-group-btn">
+										<button class="btn btn-default search-job-by-name" type="button">
+											<i class="fa fa-search" aria-hidden="true"></i>
+										</button>
+										<button class="btn btn-default clear-search" type="button">
+											<i class="fa fa-times" aria-hidden="true"></i>
+										</button>
+									</span>
+								</div> --}}
+							</div>
+							<table class="table" data-type="canceled">
+								<thead>
+									<tr>
+										{{!-- <th>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox">
+												</label>
+											</div>
+										</th> --}}
+										{{!-- <th>Full Name</th> --}}
+										<th>JOB ID</th>
+										<th>SIN</th>
+										<th>TYPE</th>
+										<th>Overall Status</th>
+										<th>Completed date &amp; time</th>
+									</tr>
+								</thead>
+								<tbody class="job-list" data-type="canceled">
+									
+								</tbody>
+							</table>
+							<nav class="text-center">
+								<ul class="pagination" data-type="canceled">
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script type="text/template" class="job-template" data-type="completed">
+		<tr>
+			{{!-- <td>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox">
+					</label>
+				</div>
+			</td> --}}
+			{{!-- <td><%=name%></td> --}}
+			<td><%=jobid%></td>
+			<td><%=siteId%></td>
+			<td><%=jobtype%></td>
+			<td><%=location%> </td>
+			<td><%=statePostalCode%></td>
+			<td><%=completeddate%></td>
+		</tr>
+	</script>
+	<script type="text/template" class="job-template" data-type="WIP">
+		<tr>
+			{{!-- <td><%=name%></td> --}}
+			<td><%=jobid%></td>
+			<td><%=siteId%></td>
+
+			<td>
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="<%=completeness%>"
+						aria-valuemin="0" aria-valuemax="100" style="width:<%=completeness%>%">
+						<span class="sr-only"><%=completeness%>% Complete</span>
+					</div>
+				</div>
+			</td>
+		</td>
+		<td><%=location%></td>
+		<td><%=statePostalCode%></td>
+		<td><%=completeddate%></td>
+	</tr>
+</script>
+<script type="text/template" class="job-template" data-type="canceled">
+</script>
+<script type="text/template" id="pagination-template">
+	<li class="first-element" data-action="first"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+	<li class="previous-element"><a href="#" aria-label="Previous" data-action="previous"><span aria-hidden="true">«</span></a></li>
+	<input class="hide" type="text" readonly="readonly" data-max-page="<%=items.length%>"/>
+	<%_.each(items, function(item) {%>
+		<%if(item.index ==0){%>
+			<li class="pagination-element active" data-index="<%=item.index%>">
+				<%}else{%>
+					<%if(item.is_hidden){%>
+						<li class="pagination-element hide" data-index="<%=item.index%>">
+							<%}else{%>
+								<li class="pagination-element" data-index="<%=item.index%>">
+									<%}}%>
+									<a href="#"><%=item.label%></a>
+								</li>
+								<%})%>
+	<li class="next-element"><a href="#" aria-label="Next" data-action="next"><span aria-hidden="true">»</span></a></li>
+	<li class="last-element" data-action="last"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+</script>
+<script src="js/vendor/jquery-3.1.0.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+<script type="text/javascript" src="http://c3173.r73.cf2.rackcdn.com/Kumulos.min.js"></script>
+<script src="js/vendor/underscore.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stupidtable/1.0.3/stupidtable.min.js"></script>
+<script src="js/api_scripts/user_details.js"></script>
+<script src="js/api_scripts/user_data.js"></script>
+
+</body>
+</html>

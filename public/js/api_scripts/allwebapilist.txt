@@ -1,0 +1,72 @@
+Web APIs
+
+1) addNew-jobs
+
+getInspectionDetails  done
+getjoblistDetails	 done
+addnewjobfilter      done
+updatejobs			 done
+
+2) forgot-password
+
+userforgotpwd     done
+
+3) inspection-completed
+
+viewallinspections  done
+inspectionfilter    need to do
+
+4) inspection-progress
+
+viewallinspections  done 
+inspectionfilter    need to do
+
+5) job-landing
+
+auditordetails      done
+viewactivejobs      done
+auditordetails		done
+viewactivejobs      done
+assignjobstoauditor  (if total need to pass all the job ids)
+viewactivejobfilter  done 
+auditorfilter        done 
+
+6) jobs-confirmed
+
+viewalljobsdetails  done
+cmptdjobsreport     done
+viewcmptdjobsbyuser done
+
+7) jobs-progress
+
+viewalljobsdetails  done
+
+8) map_view
+mapviewfilter  done.
+
+mapviewdata  done
+
+9) new_inspection
+insertdata   ---- done 
+
+10) reset_password
+userresetpassword   done
+
+11) signin
+usersigninverification  done
+
+12) signup
+checkadminemailavailability  done
+usersignupverification        done
+
+13) user_data
+getusername            done
+
+14) user_details
+viewalljobsdetails   done
+userjoblistfilter    done
+
+15) user_job_list
+viewalljobsdetails  done
+viewcmptdjobsbyuser done
+cmptdjobsreport    done

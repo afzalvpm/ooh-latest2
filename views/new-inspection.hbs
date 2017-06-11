@@ -1,0 +1,331 @@
+<!doctype html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>Landing</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="images/logo.png">
+	
+	<!-- CSS STYLES -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="css/notification.css">
+	<link rel="stylesheet" type="text/css" href="css/inspection.css">
+	<link rel="stylesheet" type="text/css" href="css/button.css">
+</head>
+<body>
+	<div class="overflow-scroll">
+		<!-- Background overlay -->
+		<div class="black-opc hide"></div>
+
+		<!-- Fixed header -->
+		<section class="navbar navbar-default navbar-fixed-top" id="header">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<label class="hamburger-menu">
+						<img src="images/hamburger.png">
+					</label>
+					<a class="navbar-brand" href="#">
+						<span class="enterprise-logo">
+							<img src="images/logo.png">
+						</span>
+						<!--<span class="enterprise-name">
+							Outdoor inspection Services Group
+							<span class="enterprise-tagline">
+							Outdoor inspection Services Group
+							</span>
+						</span>-->
+					</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<div class="dropdown">
+								<div class="profile-dropdown" data-toggle="dropdown">
+									<div class="profile-desc">
+										<h5>Admin</h5>
+									</div>
+									<img src="images/dropdown.png" class="dropdown-img">
+								</div>
+								<div class="notification-popup header-notification profile-popup dropdown-menu">
+									<div class="notification-area">
+										<div class="n-desc">
+											<div class="a-profile">
+												<a href="">Sign Out</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		
+		<!-- main wrapper -->
+		<section id="main-wrapper">
+			<!-- sidebar -->
+			<div id="sidebar">
+				<div class="sidebar-list text-left">
+					<ul class="list-unstyled">
+						<li class="active">
+							<a href="/inspection-landing">
+								<img src="images/sidebar/inspection.png" alt="home">
+								<label>inspection</label>
+							</a>
+						</li>
+						<li>
+							<a href="/jobs-landing">
+								<img src="images/sidebar/jobs.png" alt="chat">
+								<label>jobs</label>
+							</a>
+						</li>
+						<li>
+							<a href="/maps-view">
+								<img src="images/sidebar/maps.png" alt="contact">
+								<label>Maps View</label>
+							</a>
+						</li>
+						<li>
+							<a href="/user-landing">
+								<img src="images/sidebar/user.png" alt="profile">
+								<label>Users</label>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- main wrapper -->
+			<div class="container-fluid" id="wrapper-container">
+                <!--<ol class="breadcrumb">
+                    <li><a href="#">Inspection</a></li>
+                    <li class="active">Add Inspection</li>
+                </ol>-->
+                <div class="row" id="inspection-data">
+                	<div class="Form-section">
+                		<form id="new-inception">
+                			<h5>Inspection Form</h5>
+                			<div class="form-group width49 pull-right">
+                				<label for="client">Client</label>
+                				<input type="text" class="form-control" placeholder="Enter Client" name="client" id="client">
+                			</div>
+                			<div class="form-group width49">
+                				<label for="inception_date">Date of Inspection</label>
+                				<input type="date" class="form-control" placeholder="" name="inception_date" id="inception_date">
+                			</div>
+                			<div class="form-group width49">
+                				<label>Format</label>
+                				<select class="form-control" name="inception_format" id="inception_format">
+                					<option value="Static">
+                						Static
+                					</option>
+                					<option value="Digital">
+                						Digital
+                					</option>
+                                    <option value="Both">
+                                        Both
+                                    </option>
+                				</select>
+                			</div>
+                			<h5>Campaign</h5>
+                			<div class="form-group width49">
+                				<label>Campaign</label>
+                				<input type="text" class="form-control" placeholder="" name="campaign" id="campaign">
+                			</div>
+                			<div class="form-group width49 pull-right">
+                				<label>Contractor</label>
+                				<input type="text" class="form-control" placeholder="" name="contractor" id="contractor">
+                			</div>
+                			<div class="form-group width49">
+                				<label>Agency</label>
+                				<input type="text" class="form-control" placeholder="" name="agency" id="agency">
+                			</div>
+                			<h5>Inspection Brief</h5>
+                			<div class="form-group width49">
+                				<label>Condition Check</label>
+                				<input type="text" class="form-control" placeholder="" name="condition" id="condition">
+                			</div>
+                			<div class="form-group width49 pull-right">
+                				<label>Proximity Check</label>
+                				<select class="form-control" name="proximity_check" id="proximity_check">
+                					<option value="Yes">
+                						Yes
+                					</option>
+                					<option value="No">
+                						No
+                					</option>
+                				</select>
+                			</div>
+                			<div class="form-group width49">
+                				<label>Share of voice check</label>
+                				<input type="text" class="form-control" placeholder="" name="voice_check" id="voice_check">
+                			</div>
+                			<div class="form-group width49 pull-right">
+                				<label>Zip Code</label>
+                				<input type="text" class="form-control" placeholder="" name="zipcode" id="zipcode">
+                			</div>
+                			<div class="form-group width49 pull-right">
+                				<label>Job List</label>
+                				<input type="file" class="form-control" placeholder="" name="job_file" id="job_file">
+                			</div>
+
+                			<div class="pull-right btn-save">
+                				<!-- <button class="btn btn-default connect-btn btnAlign" id="upload-job-file">Upload Job List</button> -->
+                				<button class="btn btn-default connect-btn btnAlign" type="submit">Add Jobs</button>
+                			</div>
+                		</form>
+                	</div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+    <div class="loading hide">Loading&#8230;</div>
+    <style type="text/css">
+    	/* Absolute Center Spinner */
+    	.loading {
+    		position: fixed;
+    		z-index: 999;
+    		height: 2em;
+    		width: 2em;
+    		overflow: show;
+    		margin: auto;
+    		top: 0;
+    		left: 0;
+    		bottom: 0;
+    		right: 0;
+    	}
+
+    	/* Transparent Overlay */
+    	.loading:before {
+    		content: '';
+    		display: block;
+    		position: fixed;
+    		top: 0;
+    		left: 0;
+    		width: 100%;
+    		height: 100%;
+    		background-color: rgba(0,0,0,0.3);
+    	}
+
+    	/* :not(:required) hides these rules from IE9 and below */
+    	.loading:not(:required) {
+    		/* hide "loading..." text */
+    		font: 0/0 a;
+    		color: transparent;
+    		text-shadow: none;
+    		background-color: transparent;
+    		border: 0;
+    	}
+
+    	.loading:not(:required):after {
+    		content: '';
+    		display: block;
+    		font-size: 10px;
+    		width: 1em;
+    		height: 1em;
+    		margin-top: -0.5em;
+    		-webkit-animation: spinner 1500ms infinite linear;
+    		-moz-animation: spinner 1500ms infinite linear;
+    		-ms-animation: spinner 1500ms infinite linear;
+    		-o-animation: spinner 1500ms infinite linear;
+    		animation: spinner 1500ms infinite linear;
+    		border-radius: 0.5em;
+    		-webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    		box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    	}
+
+    	/* Animation */
+
+    	@-webkit-keyframes spinner {
+    		0% {
+    			-webkit-transform: rotate(0deg);
+    			-moz-transform: rotate(0deg);
+    			-ms-transform: rotate(0deg);
+    			-o-transform: rotate(0deg);
+    			transform: rotate(0deg);
+    		}
+    		100% {
+    			-webkit-transform: rotate(360deg);
+    			-moz-transform: rotate(360deg);
+    			-ms-transform: rotate(360deg);
+    			-o-transform: rotate(360deg);
+    			transform: rotate(360deg);
+    		}
+    	}
+    	@-moz-keyframes spinner {
+    		0% {
+    			-webkit-transform: rotate(0deg);
+    			-moz-transform: rotate(0deg);
+    			-ms-transform: rotate(0deg);
+    			-o-transform: rotate(0deg);
+    			transform: rotate(0deg);
+    		}
+    		100% {
+    			-webkit-transform: rotate(360deg);
+    			-moz-transform: rotate(360deg);
+    			-ms-transform: rotate(360deg);
+    			-o-transform: rotate(360deg);
+    			transform: rotate(360deg);
+    		}
+    	}
+    	@-o-keyframes spinner {
+    		0% {
+    			-webkit-transform: rotate(0deg);
+    			-moz-transform: rotate(0deg);
+    			-ms-transform: rotate(0deg);
+    			-o-transform: rotate(0deg);
+    			transform: rotate(0deg);
+    		}
+    		100% {
+    			-webkit-transform: rotate(360deg);
+    			-moz-transform: rotate(360deg);
+    			-ms-transform: rotate(360deg);
+    			-o-transform: rotate(360deg);
+    			transform: rotate(360deg);
+    		}
+    	}
+    	@keyframes spinner {
+    		0% {
+    			-webkit-transform: rotate(0deg);
+    			-moz-transform: rotate(0deg);
+    			-ms-transform: rotate(0deg);
+    			-o-transform: rotate(0deg);
+    			transform: rotate(0deg);
+    		}
+    		100% {
+    			-webkit-transform: rotate(360deg);
+    			-moz-transform: rotate(360deg);
+    			-ms-transform: rotate(360deg);
+    			-o-transform: rotate(360deg);
+    			transform: rotate(360deg);
+    		}
+    	}
+    </style>
+    <script src="js/vendor/jquery-3.1.0.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.7/xlsx.core.min.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery.validate.min.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+    <script type="text/javascript" src="http://c3173.r73.cf2.rackcdn.com/Kumulos.min.js"></script>
+    <script src="js/api_scripts/new_inspection.js"></script>
+    <script src="js/api_scripts/user_data.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,20 @@
+.download-data.assign-btn label{
+	background-color: #3B5BB2;
+	color: #fff !important;
+}
+#assignModal .modal-dialog{
+	width: 100%;
+	margin: 0;
+}
+#assignModal .modal-content{
+	height: 100vh;
+	border-radius: 0;
+	overflow: auto;
+}
+.userData.active{
+	background-color: #3B5BB2;
+    color: #fff;
+}
+#assignModal .modal-body{
+	padding: 0 !important;
+}
