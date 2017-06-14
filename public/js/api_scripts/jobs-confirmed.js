@@ -1,3 +1,15 @@
+function get_today_date(){
+	var d = new Date();
+
+var month = d.getMonth()+1;
+var day = d.getDate();
+
+var output = d.getFullYear() + '/' +
+    (month<10 ? '0' : '') + month + '/' +
+    (day<10 ? '0' : '') + day;
+  return output
+}
+
 function datenum(v, date1904) {
 	if(date1904) v+=1462;
 	var epoch = Date.parse(v);
@@ -214,7 +226,7 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
     }   
     
     //Generate a file name
-    var fileName = "ooh_job_report";
+    var fileName = "ooh_job_report"+get_today_date();
     //this will remove the blank-spaces from the title and replace it with an underscore
     fileName += ReportTitle.replace(/ /g,"_");   
     
