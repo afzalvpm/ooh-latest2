@@ -17,7 +17,8 @@ function load_jobs(){
 				$("#contractor").text(res[0].contractor)
 				$("#client-name").text(res[0].client)
 				$("#condition-check").text(res[0].conditionCheck)
-				$("#date-of-inspection").text(res[0].dateofInspection)
+				var dateofInspection = moment.utc(parseInt(res[0].dateofInspection)*1000).format("DD-MM-YYYY HH:mm A");
+				$("#date-of-inspection").text(dateofInspection)
 				$("#proximity-check").text(res[0].proximityCheck)
 				$("#inspection-format").text(res[0].format)
 				$("#share-of-voice").text(res[0].shareofVoiceCheck)

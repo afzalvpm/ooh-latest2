@@ -21,14 +21,16 @@
 	<link rel="stylesheet" type="text/css" href="css/jobs.css">
 	<link rel="stylesheet" type="text/css" href="css/signin.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-	  <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
-  <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+	<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+	<link rel="stylesheet" href="./Leaflet.markercluster-1.0.5/MarkerCluster.css"/>
 	<style type="text/css">
 		#map {
 			height: 100%;
 			overflow: static !important;
 		}
-		#buttons{
+		#buttons, #buttons1, #buttons2{
 			left: 268px;
 			top: 125px;
 			position: absolute;
@@ -45,19 +47,85 @@
 		}
 
 		#buttons1{
-			left: 268px;
 			top: 225px;
-			position: absolute;
-			z-index: 9999;
-			background-color: rgba(0, 0, 0, 0.68);
-			padding: 10px 20px;
-			color: #fff;
-			font-family: 'LatoRegular';
-			font-size: 14px;
+		}
+		#buttons2{
+			top: 285px;
+    left: 268px;
+    width: 23%;
+		}
+		#buttons2 input{
+    
 		}
 		#buttons1 label{
 			margin-right: 20px !important;
 			margin-top: 4px;
+		}
+		.marker-cluster-small {
+			background-color: rgba(181, 226, 140, 0.6);
+		}
+		.marker-cluster-small div {
+			background-color: rgba(110, 204, 57, 0.6);
+		}
+
+		.marker-cluster-medium {
+			background-color: rgba(241, 211, 87, 0.6);
+		}
+		.marker-cluster-medium div {
+			background-color: rgba(240, 194, 12, 0.6);
+		}
+
+		.marker-cluster-large {
+			background-color: rgba(253, 156, 115, 0.6);
+		}
+		.marker-cluster-large div {
+			background-color: rgba(241, 128, 23, 0.6);
+		}
+
+		/* IE 6-8 fallback colors */
+		.leaflet-oldie .marker-cluster-small {
+			background-color: rgb(181, 226, 140);
+		}
+		.leaflet-oldie .marker-cluster-small div {
+			background-color: rgb(110, 204, 57);
+		}
+
+		.leaflet-oldie .marker-cluster-medium {
+			background-color: rgb(241, 211, 87);
+		}
+		.leaflet-oldie .marker-cluster-medium div {
+			background-color: rgb(240, 194, 12);
+		}
+
+		.leaflet-oldie .marker-cluster-large {
+			background-color: rgb(253, 156, 115);
+		}
+		.leaflet-oldie .marker-cluster-large div {
+			background-color: rgb(241, 128, 23);
+		}
+
+		.marker-cluster {
+			background-clip: padding-box;
+			border-radius: 20px;
+		}
+		.marker-cluster div {
+			width: 30px;
+			height: 30px;
+			margin-left: 5px;
+			margin-top: 5px;
+
+			text-align: center;
+			border-radius: 15px;
+			font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+		}
+		.marker-cluster span {
+			line-height: 30px;
+		}
+		.leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
+			-webkit-transition: -webkit-transform 0.3s ease-out, opacity 0.3s ease-in;
+			-moz-transition: -moz-transform 0.3s ease-out, opacity 0.3s ease-in;
+			-o-transition: -o-transform 0.3s ease-out, opacity 0.3s ease-in;
+			transition: transform 0.3s ease-out, opacity 0.3s ease-in;
 		}
 
 	</style>
@@ -175,17 +243,26 @@
 	<script src="js/api_scripts/user_data.js"></script>
 	
 	<div id="buttons">
+		<label for='flush'>
+			<input type="radio" name="filter" class="map-filter" class='chk-btn' value="BOTH" checked="checked">
+			All
+		</label>
 		<label for='shower'>
-			<input type="radio" name="filter" id="show-static" class='chk-btn' value="Static" checked="checked">
+			<input type="radio" name="filter" class="map-filter" class='chk-btn' value="static">
 			Static
 		</label>
 		<label for='flush'>
-			<input type="radio" name="filter" id="show-digital" class='chk-btn' value="Digital">
+			<input type="radio" name="filter" class="map-filter" class='chk-btn' value="digital">
 			Digital
 		</label>
+		<label for='flush'>
+			<input type="checkbox" name="filter" class="cluster-button" class='chk-btn'>
+			Cluster
+		</label>
+		
 	</div>
 	<div id="buttons1">
-	<label for='shower'>
+		<label for='shower'>
 			<input type="radio" name="map-type" id="" class='chk-btn' value="basic" checked="checked">
 			Basic
 		</label>
@@ -203,7 +280,7 @@
 		</label>
 		<label for='flush'>
 			<input type="radio" name="map-type" id="" class='chk-btn' value="dark">
-			Light
+			Dark
 		</label>
 		<label for='flush'>
 			<input type="radio" name="map-type" id="" class='chk-btn' value="satellite">
@@ -211,7 +288,18 @@
 		</label>
 		
 	</div>
+	<div id="buttons2">
+		<input type="text" class="form-control" placeholder="Search by name / OISA Data" id="search-area">
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="button" id="search-job-by-name">
+				<i class="fa fa-search" aria-hidden="true"></i>
+			</button>
+			<button class="btn btn-default" type="button" id="clear-search">
+				<i class="fa fa-times" aria-hidden="true"></i>
+			</button>
+		</span>
+	</div>
 	<script>
-</script>
+	</script>
 </body>
 </html>
