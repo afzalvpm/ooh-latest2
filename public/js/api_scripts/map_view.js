@@ -1,7 +1,3 @@
-function getFormatDate(d){
-    return d.getMonth()+1 + '/' + d.getDate() + '/' + d.getFullYear()
-}
-
 var markers = new L.MarkerClusterGroup();
 var current_markers = []
 var cluster_marker ="";
@@ -9,12 +5,15 @@ var aaa = new L.MarkerClusterGroup()
 L.mapbox.accessToken = 'pk.eyJ1IjoiYWZ6YWwiLCJhIjoiY2oyMGx2dzE0MDA1cTJ3cW1kOGVwcG1wdSJ9.dCq8m2ZL0ZOLH1qynjnUwg';
 var map = L.mapbox.map('map', 'mapbox.streets',{ zoomControl:false }).setView([-24.994167,134.866944], 5);
 $(function(){
-  var minDate = getFormatDate(new Date()),
-    mdTemp = new Date(),
-    maxDate = getFormatDate(new Date(mdTemp.setDate(mdTemp.getDate() + 1000)));
   $('input[name="daterange"]').daterangepicker({
-    minDate: minDate,
-       maxDate: maxDate
+    locale: {
+      format: 'YYYY/MM/DD'
+    },
+    startDate: '2017/01/01',
+    endDate: '2020/12/31',
+    function(start, end, label) {
+      
+    }
   })
   var post_data = {
     jobtype:"",
@@ -25,6 +24,8 @@ $(function(){
     campaign:"",
     status:"",
     error:"",
+    startDate: '2017/01/01',
+    endDate: '2020/12/31',
     // jwt_token:localStorage['ooh-jwt-token'],
     
   }
@@ -330,6 +331,14 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
   e.preventDefault();
   $(this).closest("ul").find("li").removeClass("active");
   $(this).addClass("active");
+  var daterange_value = $("#daterange").val().replace(/\s/g, '');
+  var startdate = "";
+  var enddate = "";
+  if(daterange_value!="" && daterange_value.indexOf("-")>-1){
+    startdate = daterange_value.split("-")[0]
+    enddate = daterange_value.split("-")[1]
+
+  }
   for(i=0;i<current_markers.length;i++){
     map.removeLayer(current_markers[i]);
     // map.removeLayer(markers);
@@ -343,10 +352,11 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
     campaign:$(".filter-dropdown[data-type='campaign']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
     status:"",
     error:$(".filter-dropdown[data-type='errors']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
+    startdate:startdate,
+    enddate:enddate
     // jwt_token:localStorage['ooh-jwt-token'],
     
   }
-  console.log(post_data)
   var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
     for(i=0;i<res.length;i++){
@@ -361,4 +371,7 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
   })
 
 
+})
+$('input[name="daterange"]').on("change",function(){
+      $(".button-section .dropdown-menu li")[0].click()
 })
