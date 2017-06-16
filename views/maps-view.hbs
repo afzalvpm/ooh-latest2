@@ -24,15 +24,16 @@
 	<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
 	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'></script>
 	<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
-	<link rel="stylesheet" href="./Leaflet.markercluster-1.0.5/MarkerCluster.css"/>
+	<link rel="stylesheet" href="http://Leaflet.markercluster-1.0.5/MarkerCluster.css"/>
+	
 	<style type="text/css">
 		#map {
 			height: 100%;
 			overflow: static !important;
 		}
-		#buttons, #buttons1, #buttons2{
+		#buttons1{
 			left: 268px;
-			top: 125px;
+			top: 100px;;
 			position: absolute;
 			z-index: 9999;
 			background-color: rgba(0, 0, 0, 0.68);
@@ -44,23 +45,6 @@
 		#buttons label{
 			margin-right: 20px !important;
 			margin-top: 4px;
-		}
-
-		#buttons1{
-			top: 225px;
-		}
-		#buttons2{
-			display: inline-block;
-			top: 285px;
-    left: 268px;
-    width: 25%;
-		}
-		#buttons2 input{
-    		display: inline-block;
-    		width: 80%;
-		}
-		#buttons2 .input-group-btn {
-			display: inline-block;
 		}
 		#buttons1 label{
 			margin-right: 20px !important;
@@ -132,6 +116,60 @@
 			-o-transition: -o-transform 0.3s ease-out, opacity 0.3s ease-in;
 			transition: transform 0.3s ease-out, opacity 0.3s ease-in;
 		}
+		.button-section{
+			margin-bottom: 16px;
+		}
+
+
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+    }
+ 
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color: #000;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+    .search-section{
+    	width: 25%;
+    }
+    .open>.dropdown-menu {
+    display: block;
+    max-height: 200px !important;
+    overflow: scroll;
+}
+.daterangepicker{
+	z-index: 10000 !important;
+}
 
 	</style>
 
@@ -229,6 +267,101 @@
 
 	</section>
 	<div class="container-fluid" id="wrapper-container">
+		<div id="buttons1">
+		<div class="button-section pull-right text-center search-section">
+		<div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="  search-query form-control" placeholder="Search" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+		</div>
+		<div class="button-section">
+		<div class="btn-group">
+		<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="jobtype">
+				<label class="drop-text">Job Type</label>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+			<li class="selected" data-value=""><a href="#">All</a></li>
+				<!-- dropdown menu links -->
+			</ul>
+		</div>
+		<div class="btn-group">
+		<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="inspectionid">
+				<label class="drop-text">Inspection ID</label>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+			<li class="selected" data-value=""><a href="#">All</a></li>
+				<!-- dropdown menu links -->
+			</ul>
+		</div>
+		<div class="btn-group">
+		<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="state">
+				<label class="drop-text">States</label>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+			<li class="selected" data-value=""><a href="#">All</a></li>
+				<!-- dropdown menu links -->
+			</ul>
+		</div>
+		<div class="btn-group">
+		<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="postalcode">
+				<label class="drop-text">Postal Code</label>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+			<li class="selected" data-value=""><a href="#">All</a></li>
+				<!-- dropdown menu links -->
+			</ul>
+		</div>
+		</div>
+
+		<div class="button-section">
+		<div class="btn-group">
+		<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="contractor">
+				<label class="drop-text">Contracor</label>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+			<li class="selected" data-value=""><a href="#">All</a></li>
+				<!-- dropdown menu links -->
+			</ul>
+		</div>
+		<div class="btn-group">
+		<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="campaign">
+				<label class="drop-text">Campaign</label>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+			<li class="selected" data-value=""><a href="#">All</a></li>
+				<!-- dropdown menu links -->
+			</ul>
+		</div>
+		<div class="btn-group">
+		<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="errors">
+				<label class="drop-text">Errors</label>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+			<li class="selected" data-value=""><a href="#">All</a></li>
+				<!-- dropdown menu links -->
+			</ul>
+		</div>
+		<div class="btn-group">
+		<div class="form-group">
+      <label for="daterange">Date Range:</label>
+      <input type="text" class="form-control" name="daterange" id="daterange">
+    </div>
+		</div>
+		</div>
+	</div>
 		<div id="map" style="position: absolute;width: 100%;"></div>
 		<div id="campground_info"></div>
 	</div>
@@ -241,69 +374,11 @@
 	<script type="text/javascript" src="http://c3173.r73.cf2.rackcdn.com/Kumulos.min.js"></script>
 	<script src="js/vendor/underscore.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-
-	<!-- <script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script> -->
-	<!-- <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' /> -->
+	<script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 	<script src="js/api_scripts/map_view.js"></script>
 	<script src="js/api_scripts/user_data.js"></script>
 	
-	<div id="buttons">
-		<label for='flush'>
-			<input type="radio" name="filter" class="map-filter" class='chk-btn' value="BOTH" checked="checked">
-			All
-		</label>
-		<label for='shower'>
-			<input type="radio" name="filter" class="map-filter" class='chk-btn' value="static">
-			Static
-		</label>
-		<label for='flush'>
-			<input type="radio" name="filter" class="map-filter" class='chk-btn' value="digital">
-			Digital
-		</label>
-		<label for='flush'>
-			<input type="checkbox" name="filter" class="cluster-button" class='chk-btn'>
-			Cluster
-		</label>
-		
-	</div>
-	<div id="buttons1">
-		<label for='shower'>
-			<input type="radio" name="map-type" id="" class='chk-btn' value="basic" checked="checked">
-			Basic
-		</label>
-		<label for='shower'>
-			<input type="radio" name="map-type" id="" class='chk-btn' value="streets" checked="checked">
-			Streets
-		</label>
-		<label for='flush'>
-			<input type="radio" name="map-type" id="" class='chk-btn' value="bright">
-			Bright
-		</label>
-		<label for='flush'>
-			<input type="radio" name="map-type" id="" class='chk-btn' value="light">
-			Light
-		</label>
-		<label for='flush'>
-			<input type="radio" name="map-type" id="" class='chk-btn' value="dark">
-			Dark
-		</label>
-		<label for='flush'>
-			<input type="radio" name="map-type" id="" class='chk-btn' value="satellite">
-			Satellite
-		</label>
-		
-	</div>
-	<div id="buttons2">
-		<input type="text" class="form-control" placeholder="Search by name / OISA Data" id="search-area">
-		<span class="input-group-btn">
-			<button class="btn btn-default" type="button" id="search-job-by-name">
-				<i class="fa fa-search" aria-hidden="true"></i>
-			</button>
-			<button class="btn btn-default" type="button" id="clear-search">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</button>
-		</span>
-	</div>
 	<script>
 	</script>
 </body>
