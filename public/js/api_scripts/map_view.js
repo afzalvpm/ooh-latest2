@@ -328,21 +328,21 @@ $(document).on("click","#clear-search",function(){
 
 $(document).on("click",".button-section .dropdown-menu li",function(e){
   e.preventDefault();
-  $(this).closest("ul").find("li").removeClass("selected");
-  $(this).addClass("selected");
+  $(this).closest("ul").find("li").removeClass("active");
+  $(this).addClass("active");
   for(i=0;i<current_markers.length;i++){
     map.removeLayer(current_markers[i]);
     // map.removeLayer(markers);
   }
   var post_data = {
-    jobtype:$(".filter-dropdown[data-type='jobtype']").closest(".btn-group").find(" .dropdown-menu li.selected").attr("data-value"),
-    inspectionid:$(".filter-dropdown[data-type='inspectionid']").closest(".btn-group").find(".dropdown-menu li.selected").attr("data-value"),
-    state:$(".filter-dropdown[data-type='state']").closest(".btn-group").find(" .dropdown-menu li.selected").attr("data-value"),
-    postalcode:$(".filter-dropdown[data-type='postalcode']").closest(".btn-group").find(" .dropdown-menu li.selected").attr("data-value"),
-    contractor:$(".filter-dropdown[data-type='contractor']").closest(".btn-group").find(" .dropdown-menu li.selected").attr("data-value"),
-    campaign:$(".filter-dropdown[data-type='campaign']").closest(".btn-group").find(" .dropdown-menu li.selected").attr("data-value"),
+    jobtype:$(".filter-dropdown[data-type='jobtype']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
+    inspectionid:$(".filter-dropdown[data-type='inspectionid']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value"),
+    state:$(".filter-dropdown[data-type='state']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
+    postalcode:$(".filter-dropdown[data-type='postalcode']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
+    contractor:$(".filter-dropdown[data-type='contractor']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
+    campaign:$(".filter-dropdown[data-type='campaign']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
     status:"",
-    error:$(".filter-dropdown[data-type='errors']").closest(".btn-group").find(" .dropdown-menu li.selected").attr("data-value"),
+    error:$(".filter-dropdown[data-type='errors']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
     // jwt_token:localStorage['ooh-jwt-token'],
     
   }
