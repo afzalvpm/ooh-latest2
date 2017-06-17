@@ -241,7 +241,7 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
       L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v9').addTo(map);
       for(i=0;i<res.length;i++){
         var greenIcon = L.icon({
-          iconUrl: 'images/map-icons/002-signs-2 4.png',
+          iconUrl: 'images/map-icons/001-signs.png',
           // shadowUrl: 'leaf-shadow.png',
 
     iconSize:     [38, 38], // size of the icon
