@@ -269,6 +269,7 @@ $(document).on("click","#clear-search",function(){
     startDate: '2017/01/01',
     endDate: '2020/12/31',
   }
+  var is_cluster = $(".filter-dropdown[data-type='maptype']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value").length
   var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
       if(!is_cluster){
