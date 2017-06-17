@@ -12,7 +12,7 @@ $(function(){
     startDate: '2017/01/01',
     endDate: '2020/12/31',
     function(start, end, label) {
-      
+
     }
   })
   var post_data = {
@@ -31,7 +31,6 @@ $(function(){
   var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   kumulos_init.call('mapdropdowndata',{jwt_token:localStorage['ooh-jwt-token']},function(res){
     var response = res[0]
-    console.log(response)
     var jobtype = response['jobtype']
     var campaign = response['campaign']
     var errors = response['errors']
@@ -96,122 +95,20 @@ $(function(){
   })
   // var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   
-  kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
-    for(i=0;i<res.length;i++){
-      var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
-      var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
-        this.openPopup();
-      }).on('mouseout', function (e) {
-        this.closePopup();
-      })
-      current_markers.push(marker)
-    }
-  });
+  // kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
+  //   alert("SSJSJ")
+  //   for(i=0;i<res.length;i++){
+  //     var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+  //     var marker = L.marker([res[i].latitude, res[i].longitude],{iconUrl: ""}).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
+  //       this.openPopup();
+  //     }).on('mouseout', function (e) {
+  //       this.closePopup();
+  //     })
+  //     current_markers.push(marker)
+  //   }
+  // });
 });
 
-$(document).on("click",".map-filter",function(){
-  var search = $("#search-area").attr('disabled');
-  if (typeof search !== typeof undefined && search !== false) {
-    var search_content = $("#search-area").val();
-  }else{
-    var search_content = "ALL";
-  }
-  var is_cluster = $(".cluster-button").is(':checked');
-  var api_type = $(this).val()
-  var post_data = {
-    type:api_type,
-    param:search_content,
-    status:"ALL",
-    jwt_token:localStorage['ooh-jwt-token'],
-    error:'NONE'
-  }
-  for(i=0;i<current_markers.length;i++){
-    map.removeLayer(current_markers[i]);
-    map.removeLayer(markers);
-  }
-  map.removeLayer(markers);
-  markers.clearLayers();
-  $(".filter-dropdown .dropdown-menu li").removeClass("")
-  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
-  kumulos_init.call('mapviewfilter',post_data,function(res){
-    if(!is_cluster){
-      for(i=0;i<res.length;i++){
-        var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
-        var marker = L.marker([res[i].latitude, res[i].longitude],{icon: ""}).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
-          this.openPopup();
-        }).on('mouseout', function (e) {
-          this.closePopup();
-        })
-        current_markers.push(marker)
-      }
-    }else{
-      map.removeLayer(markers);
-      for(i=0;i<res.length;i++){
-        var marker = L.marker(new L.LatLng(res[i].latitude, res[i].longitude), {
-          icon: L.mapbox.marker.icon({ 'marker-color': "#0044FF"}),
-          title: "Clusters"
-        });
-        markers.addLayer(marker);
-      }
-      map.addLayer(markers);
-      cluster_marker = markers
-    }
-  })
-});
-
-
-$(document).on("change",".cluster-button",function(){
-  var search = $("#search-area").attr('disabled');
-  if (typeof search !== typeof undefined && search !== false) {
-    var search_content = $("#search-area").val();
-  }else{
-    var search_content = "ALL";
-  }
-  var is_cluster = $(this).is(':checked');
-  var maptype = $("input[name='map-type']").val();
-  var api_type = $(".map-filter").val();
-  var post_data = {
-    type:api_type,
-    param:search_content,
-    status:"ALL",
-    jwt_token:localStorage['ooh-jwt-token'],
-    error:'NONE'
-  }
-  for(i=0;i<current_markers.length;i++){
-    map.removeLayer(current_markers[i]);
-  }
-  debugger
-  var is_cluster = $(".filter-dropdown[data-type='maptype']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value").length
-  markers.clearLayers()
-  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
-  kumulos_init.call('mapviewfilter',post_data,function(res){
-    if(!is_cluster){
-         // L.mapbox.styleLayer('mapbox://styles/mapbox/'+maptype+'-v9').addTo(map);
-         for(i=0;i<res.length;i++){
-          var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
-          var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
-            this.openPopup();
-          }).on('mouseout', function (e) {
-            this.closePopup();
-          })
-          current_markers.push(marker)
-          var maptype = $("input[name='map-type']").val()
-        }
-
-      }else{
-        L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map);
-        for(i=0;i<res.length;i++){
-          var marker = L.marker(new L.LatLng(res[i].latitude, res[i].longitude), {
-            icon: L.mapbox.marker.icon({ 'marker-color': "#fff"}),
-            title: "ssksjsj"
-          });
-          markers.addLayer(marker);
-        }
-        map.addLayer(markers);
-        cluster_marker = markers
-      }
-    })
-})
 
 
 
@@ -234,31 +131,31 @@ $(document).on("click","#search-job-by-name",function(){
   var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   kumulos_init.call('mapsearchbox',post_data,function(res){
     if(!is_cluster){
-         for(i=0;i<res.length;i++){
-          var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
-          var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
-            this.openPopup();
-          }).on('mouseout', function (e) {
-            this.closePopup();
-          })
-          current_markers.push(marker)
-          var maptype = $("input[name='map-type']").val()
-        }
+     for(i=0;i<res.length;i++){
+      var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+      var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
+        this.openPopup();
+      }).on('mouseout', function (e) {
+        this.closePopup();
+      })
+      current_markers.push(marker)
+      var maptype = $("input[name='map-type']").val()
+    }
 
-      }else{
-        L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map);
-        for(i=0;i<res.length;i++){
-          var marker = L.marker(new L.LatLng(res[i].latitude, res[i].longitude), {
-            icon: L.mapbox.marker.icon({ 'marker-color': "#fff"}),
-            title: "Map View"
-          });
-          markers.addLayer(marker);
-        }
-        map.addLayer(markers);
-        cluster_marker = markers
-      }
-      $("#search-area").attr("disabled","disabled")
-    })
+  }else{
+    L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map);
+    for(i=0;i<res.length;i++){
+      var marker = L.marker(new L.LatLng(res[i].latitude, res[i].longitude), {
+        icon: L.mapbox.marker.icon({ 'marker-color': "#fff"}),
+        title: "Map View"
+      });
+      markers.addLayer(marker);
+    }
+    map.addLayer(markers);
+    cluster_marker = markers
+  }
+  $("#search-area").attr("disabled","disabled")
+})
 })
 
 $(document).on("click","#clear-search",function(){
@@ -279,31 +176,31 @@ $(document).on("click","#clear-search",function(){
   var is_cluster = $(".filter-dropdown[data-type='maptype']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value").length
   var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
-      if(!is_cluster){
-         for(i=0;i<res.length;i++){
-          var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
-          var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
-            this.openPopup();
-          }).on('mouseout', function (e) {
-            this.closePopup();
-          })
-          current_markers.push(marker)
-          var maptype = $("input[name='map-type']").val()
-        }
+    if(!is_cluster){
+     for(i=0;i<res.length;i++){
+      var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+      var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
+        this.openPopup();
+      }).on('mouseout', function (e) {
+        this.closePopup();
+      })
+      current_markers.push(marker)
+      var maptype = $("input[name='map-type']").val()
+    }
 
-      }else{
-        L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map);
-        for(i=0;i<res.length;i++){
-          var marker = L.marker(new L.LatLng(res[i].latitude, res[i].longitude), {
-            icon: L.mapbox.marker.icon({ 'marker-color': "#fff"}),
-            title: "Map View"
-          });
-          markers.addLayer(marker);
-        }
-        map.addLayer(markers);
-        cluster_marker = markers
-      }
-  });
+  }else{
+    L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map);
+    for(i=0;i<res.length;i++){
+      var marker = L.marker(new L.LatLng(res[i].latitude, res[i].longitude), {
+        icon: L.mapbox.marker.icon({ 'marker-color': "#fff"}),
+        title: "Map View"
+      });
+      markers.addLayer(marker);
+    }
+    map.addLayer(markers);
+    cluster_marker = markers
+  }
+});
   
 })
 
@@ -340,35 +237,50 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
   var is_cluster = $(".filter-dropdown[data-type='maptype']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value").length
   var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
-      if(!is_cluster){
-          L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v9').addTo(map);
-         for(i=0;i<res.length;i++){
-          var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
-          var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
-            this.openPopup();
-          }).on('mouseout', function (e) {
-            this.closePopup();
-          })
-          current_markers.push(marker)
-          var maptype = $("input[name='map-type']").val()
-        }
+    if(!is_cluster){
+      L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v9').addTo(map);
+      for(i=0;i<res.length;i++){
+        var greenIcon = L.icon({
+          iconUrl: 'images/map-icons/002-signs-2 4.png',
+          // shadowUrl: 'leaf-shadow.png',
 
-      }else{
-        L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map);
-        for(i=0;i<res.length;i++){
-          var marker = L.marker(new L.LatLng(res[i].latitude, res[i].longitude), {
-            icon: L.mapbox.marker.icon({ 'marker-color': "#fff"}),
-            title: "Map View"
-          });
-          markers.addLayer(marker);
-        }
-        map.addLayer(markers);
-        cluster_marker = markers
+    iconSize:     [38, 38], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  });
+        var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+        var marker = L.marker([res[i].latitude, res[i].longitude],{icon: greenIcon}).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
+          this.openPopup();
+        }).on('mouseout', function (e) {
+          this.closePopup();
+        })
+        current_markers.push(marker)
+        var maptype = $("input[name='map-type']").val()
       }
+
+    }else{
+      L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map);
+      for(i=0;i<res.length;i++){
+        var marker = L.marker(new L.LatLng(res[i].latitude, res[i].longitude), {
+          icon: L.mapbox.marker.icon({ 'marker-color': "#fff"}),
+          title: "Map View"
+        });
+        markers.addLayer(marker);
+      }
+      map.addLayer(markers);
+      cluster_marker = markers
+    }
   })
 
 
 })
 $('input[name="daterange"]').on("change",function(){
-      $(".button-section .dropdown-menu li")[0].click()
+  $(".button-section .dropdown-menu li")[0].click()
 })
+
+map.on('zoomend', function() {
+  var currentZoom = map.getZoom();
+  myMarker.setRadius(currentZoom);
+});
