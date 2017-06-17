@@ -26,13 +26,12 @@ $(function(){
     error:"",
     startDate: '2017/01/01',
     endDate: '2020/12/31',
-    // jwt_token:localStorage['ooh-jwt-token'],
     
   }
   var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   kumulos_init.call('mapdropdowndata',{jwt_token:localStorage['ooh-jwt-token']},function(res){
-
     var response = res[0]
+    console.log(response)
     var jobtype = response['jobtype']
     var campaign = response['campaign']
     var errors = response['errors']
@@ -40,6 +39,7 @@ $(function(){
     var contractor = response['contractor']
     var postalcode = response['postalcode']
     var state = response['state']
+    var status = response['status']
     for (var key in jobtype) {
       if (jobtype.hasOwnProperty(key)) {
         var html = '<li data-value="'+jobtype[key]+'"><a href="#">'+jobtype[key]+'</a></li>';
@@ -86,6 +86,13 @@ $(function(){
           $(".filter-dropdown[data-type='errors']").closest(".btn-group").find(".dropdown-menu").append(html)
       }
     }
+    for (var key in status) {
+      if (errors.hasOwnProperty(key)) {
+        var html = '<li data-value="'+status[key]+'"><a href="#">'+status[key]+'</a></li>';
+        if(status[key] !=null)
+          $(".filter-dropdown[data-type='status']").closest(".btn-group").find(".dropdown-menu").append(html)
+      }
+    }
   })
   // var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   
@@ -130,7 +137,7 @@ $(document).on("click",".map-filter",function(){
     if(!is_cluster){
       for(i=0;i<res.length;i++){
         var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
-        var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
+        var marker = L.marker([res[i].latitude, res[i].longitude],{icon: ""}).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
           this.openPopup();
         }).on('mouseout', function (e) {
           this.closePopup();
@@ -324,7 +331,7 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
     postalcode:$(".filter-dropdown[data-type='postalcode']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
     contractor:$(".filter-dropdown[data-type='contractor']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
     campaign:$(".filter-dropdown[data-type='campaign']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
-    status:"",
+    status:$(".filter-dropdown[data-type='status']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
     error:$(".filter-dropdown[data-type='errors']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
     startdate:startdate,
     enddate:enddate
