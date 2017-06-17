@@ -1,13 +1,13 @@
 function get_today_date(){
 	var d = new Date();
 
-var month = d.getMonth()+1;
-var day = d.getDate();
+	var month = d.getMonth()+1;
+	var day = d.getDate();
 
-var output = d.getFullYear() + '/' +
-    (month<10 ? '0' : '') + month + '/' +
-    (day<10 ? '0' : '') + day;
-  return output
+	var output = d.getFullYear() + '/' +
+	(month<10 ? '0' : '') + month + '/' +
+	(day<10 ? '0' : '') + day;
+	return output
 }
 
 function datenum(v, date1904) {
@@ -84,6 +84,8 @@ function load_completed_jobs(){
 			var template = _.template($('#job-template').html());
 			for(i=0;i<job_array.length;i++){
 				var element = job_array[i]
+				element['state'] = element['statePostalCode'].split(" ")[0]
+				element['PostalCode'] = element['statePostalCode'].split(" ")[1]
 				element['completeddate'] = moment.utc(parseInt(job_array[i]['completedDate'])*1000).format("DD-MM-YYYY HH:mm A");
 				$("#job-list").append(template(element));
 			}
@@ -121,6 +123,7 @@ $(document).on("click",".pagination-element",function(){
 		userid:0,
 		jwt_token:localStorage['ooh-jwt-token']
 	}
+	console.log(post_data)
 	if(typeof(localStorage['ooh-jwt-token'])!=undefined){
 		var template = _.template($('#job-template').html());
 		var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
@@ -132,6 +135,8 @@ $(document).on("click",".pagination-element",function(){
 				var template = _.template($('#job-template').html());
 				for(i=0;i<job_array.length;i++){
 					var element = job_array[i]
+					element['state'] = element['statePostalCode'].split(" ")[0]
+					element['PostalCode'] = element['statePostalCode'].split(" ")[1]
 					element['completeddate'] = moment.utc(parseInt(job_array[i]['completedDate'])*1000).format("DD-MM-YYYY HH:mm A");
 					$("#job-list").append(template(element));
 
@@ -254,15 +259,19 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
 
 $(".download-data").on("click",function(){
 	var is_checked_all = $("#select-all-jobs").is(":checked")
+	var is_search_area_disabled = typeof($("#search-area").attr("disabled")) == "string"
+	if(is_search_area_disabled)
+		is_checked_all = false
 	var is_selected = $(".job-element").find("input[type='checkbox']").is(":checked")
 	var pdf_data = []
 	var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
 	kumulos_init.call('cmptdjobsreport',{jwt_token:localStorage['ooh-jwt-token']},function(res){
-		var headers = ['FaceNumber','MoveID','FusionID','Suburb','State PostCode','SiteNumber','FaceDescription','FaceSize','ProductName','SalesContractNumber','CampaignName','Advertiser','Brand','AgencyPrimary','StartDate','EndDate','DurationDays','Daypart','FaceSpotLenth','FacePackName','App Job ID','App Job Acepted by','App Job accepted time','App job Geo Code latitude','App Job Geocode Longitude','App Job Address','App Job Post Code ','App job Inspection Type ','App job Condition GOOD','App job Condition NO PANEL ','App job Condition NOT POSTED','App job Condition DAMAGED ','App job Condition WRONG PANEL SIDE ','App job Condition OBSTRUCTED ','App job Condition NON ILLUMINATION ','App job Condition PROXIMITY ','App job Condition SHARE OF VOICE ','App job NOTES']
+		var headers = ['FaceNumber','MoveID','FusionID','Suburb','State PostCode','SiteNumber','Suburb','FaceDescription','FaceSize','ProductName','SalesContractNumber','CampaignName','Advertiser','Brand','AgencyPrimary','StartDate','EndDate','DurationDays','Daypart','FaceSpotLenth','FacePackName','App Job ID','App Job Acepted by','App Job accepted time','App job Geo Code latitude','App Job Geocode Longitude','App Job Address','App Job Post Code ','App job Inspection Type ','App job Condition GOOD','App job Condition NO PANEL ','App job Condition NOT POSTED','App job Condition DAMAGED ','App job Condition WRONG PANEL SIDE ','App job Condition OBSTRUCTED ','App job Condition NON ILLUMINATION ','App job Condition PROXIMITY ','App job Condition SHARE OF VOICE ','App job NOTES']
 		// var headers = ["Suburb","State","Advertiser","Agency primary","start date","end date","app job id","job accepted by","App job Geo Code latitude","App job Geo Code longitude","App Job Suburb","App Job Post Code","App job Inspection Type","App job Condition PROXIMITY","App job Condition SHARE OF VOICE","App job NOTES","Image url","App job Condition GOOD","App job Condition NOT POSTED","App job Condition WRONG PANEL SIDE "]
 		pdf_data.push(headers)
 		for(i=0;i<res.length;i++){
 			var pdf_element = res[i];
+			console.log(pdf_element)
 			pdf_element['start_date'] = moment.utc(parseInt(res[i].dateofInspection)*1000).format("DD-MM-YYYY HH:mm A")
 			pdf_element['end_date'] = moment.utc(parseInt(res[i].endDate)*1000).format("DD-MM-YYYY HH:mm A")
 			pdf_element['job_acceptedtime'] = moment.utc(parseInt(res[i].appjobacceptedtime)*1000).format("DD-MM-YYYY HH:mm A")
@@ -274,7 +283,12 @@ $(".download-data").on("click",function(){
 			var is_obstructed = status.indexOf("OBSTRUCTED")>-1?true:false;
 			var is_non_illumination = status.indexOf("NON ILLUMINATION")>-1?true:false;
 			var is_damaged = status.indexOf("DAMAGED")>-1?true:false;
-			var xls_element = [pdf_element.panalId,pdf_element.moveId,pdf_element.fusionId,pdf_element.suburb,pdf_element.statepostalcode,pdf_element.siteId,pdf_element.location,pdf_element.faceSize,pdf_element.productName,pdf_element.salesContractNumber,pdf_element.campaign,pdf_element.advertiser,pdf_element.brand,pdf_element.agency,pdf_element.start_date,pdf_element.end_date,pdf_element.durationDays,pdf_element.daypart,pdf_element.faceSpotLenth,pdf_element.facePackName,pdf_element.appjobid,pdf_element.name,pdf_element.job_acceptedtime,pdf_element.applat,pdf_element.applong,pdf_element.applocation,pdf_element.zipCode,pdf_element.jobtype,is_good,is_not_panel,is_not_posted,is_damaged,is_wrong_panel_side,is_obstructed,is_non_illumination,pdf_element.proximityCheck,pdf_element.shareofVoiceCheck,pdf_element.appnotes]
+			pdf_element['proximity'] = typeof(pdf_element['proximity']) != undefined ? pdf_element.proximity :"No"
+			pdf_element['shareofvoice'] = typeof(pdf_element['proximity']) != undefined ? pdf_element.shareofvoice : "No"
+			pdf_element['FaceDescription'] = pdf_element['location'].split(",")[1];
+			pdf_element['Suburb'] = pdf_element['location'].split(",")[0];
+			debugger
+			var xls_element = [pdf_element.panalId,pdf_element.moveId,pdf_element.fusionId,pdf_element.suburb,pdf_element.statepostalcode,pdf_element.siteId,pdf_element.Suburb,pdf_element.FaceDescription,pdf_element.faceSize,pdf_element.productName,pdf_element.salesContractNumber,pdf_element.campaign,pdf_element.advertiser,pdf_element.brand,pdf_element.agency,pdf_element.start_date,pdf_element.end_date,pdf_element.durationDays,pdf_element.daypart,pdf_element.faceSpotLenth,pdf_element.facePackName,pdf_element.appjobid,pdf_element.name,pdf_element.job_acceptedtime,pdf_element.applat,pdf_element.applong,pdf_element.applocation,pdf_element.zipCode,pdf_element.jobtype,is_good,is_not_panel,is_not_posted,is_damaged,is_wrong_panel_side,is_obstructed,is_non_illumination,pdf_element.proximity,pdf_element.shareofvoice,pdf_element.appnotes]
 			if(is_checked_all || is_selected == false){
 				pdf_data.push(xls_element)
 			}else{
@@ -282,9 +296,10 @@ $(".download-data").on("click",function(){
 				if(selected_checkboxes == true){
 					pdf_data.push(xls_element)
 				}
-
 			}
 		}
+		// suburb and face description
+
 		var wb = new Workbook(), ws = sheet_from_array_of_arrays(pdf_data);
 
 		/* add worksheet to workbook */
@@ -315,6 +330,8 @@ $("#search-job-by-name").click(function(){
 				var job_array = res
 				for(i=0;i<job_array.length;i++){
 					element = job_array[i]
+					element['state'] = element['statePostalCode'].split(" ")[0]
+					element['PostalCode'] = element['statePostalCode'].split(" ")[1]
 					element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
 					element['client'] = ''
 					element['contractor'] = ''

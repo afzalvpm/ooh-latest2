@@ -53,6 +53,8 @@ function load_user_jobs(){
 			var job_array_length = Object.keys(res[0]['data']).length
 			for(i=0;i<job_array_length;i++){
 				element = job_array[i]
+				element['state'] = element['statePostalCode'].split(" ")[0]
+				element['PostalCode'] = element['statePostalCode'].split(" ")[1]
 				element['startdate'] = moment.utc(parseInt(job_array[i]['startDate'])*1000).format("DD-MM-YYYY HH:mm A");
 				element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
 				$("#job-list").append(template(element));
@@ -125,6 +127,8 @@ $(document).on("click",".pagination[data-type='job'] .pagination-element",functi
 			var job_array_length = Object.keys(res[0]['data']).length
 			for(i=0;i<job_array_length;i++){
 				element = job_array[i]
+				element['state'] = element['statePostalCode'].split(" ")[0]
+				element['PostalCode'] = element['statePostalCode'].split(" ")[1]
 				element['startdate'] = moment.utc(parseInt(job_array[i]['startDate'])*1000).format("DD-MM-YYYY HH:mm A");
 				element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
 				$("#job-list").append(template(element));
@@ -133,65 +137,6 @@ $(document).on("click",".pagination[data-type='job'] .pagination-element",functi
 	}
 
 })
-// $(document).on("click",".pagination .pagination-element",function(){
-// 	var pagination_type = $(this).closest(".pagination").attr("data-type")
-// 	var numberofrecs = 9;
-// 	$(".pagination[data-type='"+pagination_type+"'] .pagination-element").removeClass("active")
-// 	$(this).addClass("active");
-// 	var offset = parseInt($(this).attr("data-index"))* numberofrecs
-// 	var post_data = {
-// 		numberofrec:numberofrecs,
-// 		offset:offset,
-// 		jwt_token:localStorage['ooh-jwt-token']
-// 	}
-// 	var section_area =  $("#auditor-list") 
-// 	var section_area = (pagination_type=="job")? $("#job-list") : $("#auditor-list")
-// 	var api_name = (pagination_type=="job")? "viewactivejobs" : "auditordetails"
-// 	var template_name = (pagination_type=="job")? $('#job-template') : $('#auditor-template')
-// 	var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
-// 	kumulos_init.call(api_name,post_data,function(res){
-// 		section_area.html("")
-// 		var template = _.template(template_name.html());
-// 		var job_array = res[0]['data']
-// 		var job_array_length = Object.keys(res[0]['data']).length
-// 		for(i=0;i<job_array_length;i++){
-// 			element = job_array[i]
-// 			if(pagination_type=="job")
-// 				element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
-// 			section_area.append(template(element));
-// 		}
-// 	})
-// })
-
-// $("#search-job-by-name").click(function(){
-// 	var numberofrecs = 9;
-// 	var max_pagination_elements = 6;
-// 	var search_content = $("#search-area").val()
-// 	var post_data = {
-// 		nameorid:search_content,
-// 		jwt_token:localStorage['ooh-jwt-token']
-// 	}
-// 	if(typeof(localStorage['ooh-jwt-token'])!=undefined){
-// 		if(search_content.length){
-// 			var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
-// 			kumulos_init.call('viewjobsbynameorid',post_data,function(res){
-// 				$("#job-list").html("")
-// 				debugger
-// 				var template = _.template($('#job-template').html());
-// 				var job_array = res[0]
-// 				var job_array_length = Object.keys(res[0]).length
-// 				for(i=0;i<job_array_length;i++){
-// 					element = job_array[i]
-// 					element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
-// 					$("#job-list").append(template(element));
-// 				}
-// 				$(".pagination[data-type='job']").addClass("hide")
-// 				$("#search-area").attr("disabled","disabled")
-// 							// $("#clear-search").removeClass("hide");
-// 						})
-// 		}
-// 	}
-// })
 $("#clear-search").on("click",function(){
 	load_user_jobs();
 	$("#search-area").val("")
@@ -279,6 +224,9 @@ $(document).on("click",".auditor-element .userData",function(){
 	$(".auditor-element .userData").removeClass("active")
 	var is_selected_all_jobs = $("#select-all-jobs").is(":checked");
 	var job_list = []
+	var search_disabled = typeof($("#search-area").attr("disabled")) == "string"
+	if (search_disabled) 
+		is_selected_all_jobs = false;
 	if(is_selected_all_jobs == false){
 		var selected_jobs = $(".job-element")
 		for(i=0;i<selected_jobs.length;i++){
@@ -301,6 +249,7 @@ $(document).on("click",".auditor-element .userData",function(){
 		load_user_jobs()
 		$(".download-data.assign-btn").addClass("hide")
 		$("#select-all-jobs").prop("checked",false)
+		$("#search-area").removeAttr('disabled');
 	})
 })
 
@@ -318,7 +267,6 @@ $("#search-view-active-job").click(function(){
 	}
 	if(typeof(localStorage['ooh-jwt-token'])!=undefined){
 		if(search_content.length){
-			debugger
 			var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
 			kumulos_init.call('viewactivejobfilter',post_data,function(res){
 				$("#job-list").html("")
@@ -332,12 +280,12 @@ $("#search-view-active-job").click(function(){
 				var template = _.template($('#job-template').html());
 				var job_array = res
 				var job_array_length = res.length
-				// var job_array_length = Object.keys(res[0]).length
 				for(i=0;i<job_array_length;i++){
 					element = job_array[i]
+					element['state'] = element['statePostalCode'].split(" ")[0]
+					element['PostalCode'] = element['statePostalCode'].split(" ")[1]
 					element['startdate'] = moment.utc(parseInt(job_array[i]['startDate'])*1000).format("DD-MM-YYYY HH:mm A");
 					element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
-					
 					$("#job-list").append(template(element));
 				}
 				

@@ -5,7 +5,7 @@ var map = L.mapbox.map('map-area', 'mapbox.streets').setView([-24.994167,134.866
 $(document).on("click",".pagination-element",function(){
 	$(".pagination-element").removeClass("active")
 	var numberofrec=9 ;
-	var offset = parseInt($(this).attr("data-index"))*2
+	var offset = parseInt($(this).attr("data-index"))*numberofrec;
 	$(this).addClass("active")
 	var post_data = {
 		status:"WIP",
@@ -28,6 +28,8 @@ $(document).on("click",".pagination-element",function(){
 				var template = _.template($('#job-template').html());
 				for(i=0;i<job_array.length;i++){
 					var element = job_array[i]
+					element['state'] = element['statePostalCode'].split(" ")[0]
+					element['PostalCode'] = element['statePostalCode'].split(" ")[1]
 					var date = new Date(parseInt(element.completedDate));
 					element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
 
@@ -100,6 +102,8 @@ $(function(){
 			var template = _.template($('#job-template').html());
 			for(i=0;i<job_array.length;i++){
 				var element = job_array[i]
+				element['state'] = element['statePostalCode'].split(" ")[0]
+				element['PostalCode'] = element['statePostalCode'].split(" ")[1]
 				var date = new Date(parseInt(element.completedDate));
 				element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
 				$("#job-list").append(template(element));
@@ -156,38 +160,6 @@ $(document).on("click",".view-map",function(){
     	this.closePopup();
     })
     current_markers.push(auditormarker)
-	// $("#map-area").locationpicker({
-	// 	location: {
-	// 		latitude: latitude,
-	// 		longitude:longitude
-	// 	},
-	// 	locationName: "",
-	// 	radius: 500,
-	// 	zoom: 13,
-	// 	mapTypeId: google.maps.MapTypeId.ROADMAP,
-	// 	styles: [],
-	// 	mapOptions: {},
-	// 	scrollwheel: true,
-	// 	inputBinding: {
-	// 		latitudeInput: null,
-	// 		longitudeInput: null,
-	// 		radiusInput: null,
-	// 		locationNameInput: null
-	// 	},
-	// 	enableAutocomplete: false,
-	// 	enableAutocompleteBlur: false,
-	// 	autocompleteOptions: null,
-	// 	addressFormat: 'postal_code',
-	// 	enableReverseGeocode: true,
-	// 	draggable: false,
-	// 	onchanged: function(currentLocation, radius, isMarkerDropped) {
-	// 	},
-	// 	onlocationnotfound: function(locationName) {},
-	// 	oninitialized: function (component) {},
-	// 	markerIcon: undefined,
-	// 	markerDraggable: false,
-	// 	markerVisible : true
-	// })
 	$("#map-modal").modal('show');
 	setTimeout(function(){
 		map.invalidateSize();

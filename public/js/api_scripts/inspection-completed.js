@@ -12,13 +12,14 @@ function load_inspection(){
 		kumulos_init.call('viewallinspections',post_data,function(res){
 			$("#job-list").html("")
 			var job_array = res[0]['data']
+			console.log(job_array)
 			var job_array_length = Object.keys(res[0]['data']).length
 			var template = _.template($('#job-template').html());
 			for(i=0;i<job_array_length;i++){
 				var element = job_array[i]
 				var date = new Date(parseInt(element.completedDate));
-				element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
-				element['start_date'] =  moment.utc(parseInt(job_array[i]['dateofInspection'])*1000).format("DD-MM-YYYY HH:mm A");
+				element['completeddate'] = moment.utc(parseInt(element['enddate'])*1000).format("DD-MM-YYYY HH:mm A");
+				element['start_date'] =  moment.utc(parseInt(element['dateofInspection'])*1000).format("DD-MM-YYYY HH:mm A");
 				$("#job-list").append(template(element));
 			}
 			var pagination_limit = res[0]['totalcount']/numberofrecs;
@@ -60,11 +61,11 @@ $(document).on("click",".pagination-element",function(){
 			if(job_array_length){
 				$("#job-list").html("")				
 				var template = _.template($('#job-template').html());
-				for(i=0;i<job_array.length;i++){
+				for(i=0;i<job_array_length;i++){
 					var element = job_array[i]
 					var date = new Date(parseInt(element.completedDate));
-					element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
-					element['start_date'] =  moment.utc(parseInt(job_array[i]['dateofInspection'])*1000).format("DD-MM-YYYY HH:mm A");
+					element['completeddate'] = moment.utc(parseInt(element['enddate'])*1000).format("DD-MM-YYYY HH:mm A");
+					element['start_date'] =  moment.utc(parseInt(element['dateofInspection'])*1000).format("DD-MM-YYYY HH:mm A");
 					$("#job-list").append(template(element));
 
 				}
@@ -130,7 +131,8 @@ $("#search-job-by-name").click(function(){
 				var job_array_length = Object.keys(res[0]).length
 				for(i=0;i<job_array_length;i++){
 					element = job_array[i]
-					element['start_date'] =  moment.utc(parseInt(job_array[i]['dateofInspection'])*1000).format("DD-MM-YYYY HH:mm A");
+					element['completeddate'] = moment.utc(parseInt(element['enddate'])*1000).format("DD-MM-YYYY HH:mm A");
+					element['start_date'] =  moment.utc(parseInt(element['dateofInspection'])*1000).format("DD-MM-YYYY HH:mm A");
 					$("#job-list").append(template(element));
 				}
 				$(".pagination").addClass("hide")

@@ -26,7 +26,7 @@ function load_inspection(){
 			if(pagination_limit.toString().indexOf(".")>0 && pagination_limit>0){
 				no_elements +=1 ;
 			}
-			if(no_elements>1 && job_array.length){
+			if(no_elements>1 && job_array_length){
 				var element_array = [];
 				var template = _.template($('#pagination-template').html());
 				for(i=0;i<no_elements;i++){
@@ -48,19 +48,21 @@ $(document).on("click",".pagination-element",function(){
 	var post_data = {
 		type:"WIP",
 		numberofrec:numberofrec,
-		offset:parseInt($(this).attr("data-index"))*2,
+		offset:offset,
 		jwt_token:localStorage['ooh-jwt-token']
 	}
+	console.log(post_data)
 	if(typeof(localStorage['ooh-jwt-token'])!=undefined){
 		var template = _.template($('#job-template').html());
 		var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
 		kumulos_init.call('viewallinspections',post_data,function(res){
 			var job_array = res[0]['data']
 			var job_array_length = Object.keys(res[0]['data']).length
+			debugger
 			if(job_array_length){
 				$("#job-list").html("")				
 				var template = _.template($('#job-template').html());
-				for(i=0;i<job_array.length;i++){
+				for(i=0;i<job_array_length;i++){
 					var element = job_array[i]
 					var date = new Date(parseInt(element.completedDate));
 					element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
