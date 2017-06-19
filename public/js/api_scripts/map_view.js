@@ -240,18 +240,8 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
     if(!is_cluster){
       L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v9').addTo(map);
       for(i=0;i<res.length;i++){
-        var greenIcon = L.icon({
-          iconUrl: 'images/map-icons/001-signs.png',
-          // shadowUrl: 'leaf-shadow.png',
-
-    iconSize:     [38, 38], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-  });
         var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
-        var marker = L.marker([res[i].latitude, res[i].longitude],{icon: greenIcon}).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
+        var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
           this.openPopup();
         }).on('mouseout', function (e) {
           this.closePopup();
@@ -279,8 +269,3 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
 $('input[name="daterange"]').on("change",function(){
   $(".button-section .dropdown-menu li")[0].click()
 })
-
-map.on('zoomend', function() {
-  var currentZoom = map.getZoom();
-  myMarker.setRadius(currentZoom);
-});
