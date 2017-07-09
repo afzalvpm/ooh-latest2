@@ -41,57 +41,78 @@ $(function(){
     var status = response['status']
     for (var key in jobtype) {
       if (jobtype.hasOwnProperty(key)) {
-        var html = '<li data-value="'+jobtype[key]+'"><a href="#">'+jobtype[key]+'</a></li>';
-        $(".filter-dropdown[data-type='jobtype']").closest(".btn-group").find(".dropdown-menu").append(html)
+        var html = '<option data-value="'+jobtype[key]+'" value="'+jobtype[key]+'">'+jobtype[key]+'</option>';
+        // debugger
+        $("#jobtype-filter").append(html)
       }
     }
+        $('#jobtype-filter').multiselect({includeSelectAllOption: true,selectAllText: 'Select All',nonSelectedText: 'Job Type'  });
     for (var key in campaign) {
       if (campaign.hasOwnProperty(key)) {
-        var html = '<li data-value="'+campaign[key]['campaign']+'"><a href="#">'+campaign[key]['campaign']+'</a></li>';
-        $(".filter-dropdown[data-type='campaign']").closest(".btn-group").find(".dropdown-menu").append(html)
+        var html = '<option data-value="'+campaign[key]['campaign']+'" value="'+campaign[key]['campaign']+'">'+campaign[key]['campaign']+'</option>';
+        $("#campaign-filter").append(html)
       }
     }
+     $("#campaign-filter").multiselect({includeSelectAllOption: true,
+  selectAllText: 'Select All',nonSelectedText: 'Campaign'  });
     for (var key in inspectionid) {
       if (inspectionid.hasOwnProperty(key)) {
-        var html = '<li data-value="'+inspectionid[key]['inspectionid']+'"><a href="#">'+inspectionid[key]['inspectionid']+'</a></li>';
-        $(".filter-dropdown[data-type='inspectionid']").closest(".btn-group").find(".dropdown-menu").append(html)
+        // inspectionid-filter
+        var html = '<option data-value="'+inspectionid[key]['inspectionid']+'" value="'+inspectionid[key]['inspectionid']+'">'+inspectionid[key]['inspectionid']+'</option>';
+        $("#inspectionid-filter").append(html)
       }
     }
+    $('#inspectionid-filter').multiselect({includeSelectAllOption: true,
+  selectAllText: 'Select All',nonSelectedText: 'Inspection ID'  });
     for (var key in contractor) {
       if (inspectionid.hasOwnProperty(key)) {
-        var html = '<li data-value="'+contractor[key]['contractor']+'"><a href="#">'+contractor[key]['contractor']+'</a></li>';
-        $(".filter-dropdown[data-type='contractor']").closest(".btn-group").find(".dropdown-menu").append(html)
+        var html = '<option data-value="'+contractor[key]['contractor']+'" value="'+contractor[key]['contractor']+'">'+contractor[key]['contractor']+'</option>';
+        // debugger
+        $("#contractor-filter").append(html)
       }
     }
+    $("#contractor-filter").multiselect({includeSelectAllOption: true,
+  selectAllText: 'Select All',nonSelectedText: 'Contractor'  });
 
     
     for (var key in state) {
       if (state.hasOwnProperty(key)) {
-        var html = '<li data-value="'+state[key]+'"><a href="#">'+state[key]+'</a></li>';
-        $(".filter-dropdown[data-type='state']").closest(".btn-group").find(".dropdown-menu").append(html)
+        var html = '<option data-value="'+state[key]+'" value="'+state[key]+'">'+state[key]+'</li>';
+        $("#state-filter").append(html)
+        // $(".filter-dropdown[data-type='state']").closest(".btn-group").find(".dropdown-menu").append(html)
       }
     }
+         $("#state-filter").multiselect({includeSelectAllOption: true,selectAllText: 'Select All',nonSelectedText: 'State'  });
+
     for (var key in postalcode) {
       if (postalcode.hasOwnProperty(key)) {
-        var html = '<li data-value="'+postalcode[key]+'"><a href="#">'+postalcode[key]+'</a></li>';
-        if(postalcode[key] !=null)
-          $(".filter-dropdown[data-type='postalcode']").closest(".btn-group").find(".dropdown-menu").append(html)
+        if(postalcode[key] !=null){
+          var html = '<option data-value="'+postalcode[key]+'" value="'+postalcode[key]+'">'+postalcode[key]+'</li>';
+          $("#postalcode-filter").append(html)
+        }
       }
     }
+         $("#postalcode-filter").multiselect({includeSelectAllOption: true,selectAllText: 'Select All',nonSelectedText: 'Postal Code'  });
+
     for (var key in errors) {
       if (errors.hasOwnProperty(key)) {
-        var html = '<li data-value="'+errors[key]+'"><a href="#">'+errors[key]+'</a></li>';
-        if(errors[key] !=null)
-          $(".filter-dropdown[data-type='errors']").closest(".btn-group").find(".dropdown-menu").append(html)
+        if(errors[key] !=null){
+        var html = '<option data-value="'+errors[key]+'" value="'+errors[key]+'">'+errors[key]+'</li>';
+          $("#errors-filter").append(html)
+        }
       }
     }
+    $("#errors-filter").multiselect({includeSelectAllOption: true,selectAllText: 'Select All',nonSelectedText: 'Errors'  });
+
     for (var key in status) {
       if (errors.hasOwnProperty(key)) {
-        var html = '<li data-value="'+status[key]+'"><a href="#">'+status[key]+'</a></li>';
         if(status[key] !=null)
-          $(".filter-dropdown[data-type='status']").closest(".btn-group").find(".dropdown-menu").append(html)
+          var html = '<option data-value="'+status[key]+'" value="'+status[key]+'">'+status[key]+'</li>';
+        $("#status-filter").append(html)
+          $("#status-filter").append(html)
       }
     }
+    $("#status-filter").multiselect({includeSelectAllOption: true,selectAllText: 'Select All',nonSelectedText: 'Status'  });
   })
   // var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   

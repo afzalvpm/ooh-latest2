@@ -21,6 +21,8 @@
 	<link rel="stylesheet" type="text/css" href="css/jobs.css">
 	<link rel="stylesheet" type="text/css" href="css/signin.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/multiple-select/1.2.0/multiple-select.min.css" />
 	<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
 	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'></script>
 	<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
@@ -280,16 +282,8 @@
 				</span>
 			</div>
 			<div class="button-section">
-				<div class="btn-group">
-					<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="jobtype">
-						<label class="drop-text">Job Type</label>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="active" data-value=""><a href="#">All</a></li>
-						<!-- dropdown menu links -->
-					</ul>
-				</div>
+				<select id="jobtype-filter" multiple>
+				</select>
 				<div class="btn-group">
 					<a class="btn dropdown-toggle btn-primary filter-dropdown maptype-dropdown" data-toggle="dropdown" href="#" data-type="maptype">
 						<label class="drop-text">Map Type</label>
@@ -301,79 +295,25 @@
 						<!-- dropdown menu links -->
 					</ul>
 				</div>
-				<div class="btn-group">
-					<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="inspectionid">
-						<label class="drop-text">Inspection ID</label>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="active" data-value=""><a href="#">All</a></li>
-						<!-- dropdown menu links -->
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="state">
-						<label class="drop-text">States</label>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="active" data-value=""><a href="#">All</a></li>
-						<!-- dropdown menu links -->
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="postalcode">
-						<label class="drop-text">Postal Code</label>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="active" data-value=""><a href="#">All</a></li>
-						<!-- dropdown menu links -->
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="status">
-						<label class="drop-text">Status</label>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="active" data-value=""><a href="#">All</a></li>
-						<!-- dropdown menu links -->
-					</ul>
-				</div>
+				<select id="inspectionid-filter" multiple>
+				</select>
+				<select id="state-filter" multiple>
+				</select>
+				<select id="postalcode-filter" multiple>
+				</select>
+				<select id="status-filter" multiple>
+				</select>
+
 			</div>
 
 			<div class="button-section">
-				<div class="btn-group">
-					<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="contractor">
-						<label class="drop-text">Contracor</label>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="active" data-value=""><a href="#">All</a></li>
-						<!-- dropdown menu links -->
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="campaign">
-						<label class="drop-text">Campaign</label>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="active" data-value=""><a href="#">All</a></li>
-						<!-- dropdown menu links -->
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn dropdown-toggle btn-primary filter-dropdown" data-toggle="dropdown" href="#" data-type="errors">
-						<label class="drop-text">Errors</label>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="active" data-value=""><a href="#">All</a></li>
-						<!-- dropdown menu links -->
-					</ul>
-				</div>
+				<select id="contractor-filter" multiple>
+				</select>
+				<select id="campaign-filter" multiple>
+				</select>
+				
+				<select id="errors-filter" multiple>
+				</select>
 				<div class="btn-group">
 					<div class="form-group">
 						<label for="daterange">Date Range:</label>
@@ -396,10 +336,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
 	<script src="js/api_scripts/map_view.js"></script>
 	<script src="js/api_scripts/user_data.js"></script>
 	
 	<script>
-	</script>
+
+	// $(document).ready(function() {
+ //        $('#jobtype-filter').multiselect();
+ //    });
+</script>
 </body>
 </html>

@@ -139,6 +139,14 @@
 							</a>
 						</div>
 					</div>
+					<div class="col-md-4 mpad0 text-center">
+						<div class="inspection-data">
+							<a href="/jobs-assigned">
+								<img src="images/job3.png" alt="">
+								<label>View Assigned Jobs</label>
+							</a>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-12" id="confirm-section">
 					<div class="booking-details">
@@ -175,6 +183,7 @@
 									<th data-sort="string">Location <i class="fa fa-sort" aria-hidden="true"></th>
 									<th data-sort="string">State <i class="fa fa-sort" aria-hidden="true"></th>
 									<th data-sort="string">Postal Code <i class="fa fa-sort" aria-hidden="true"></th>
+									<th>Thumbnail </th>
 									<th data-sort="string">Completed date & time <i class="fa fa-sort" aria-hidden="true"></th>
 								</tr>
 							</thead>
@@ -214,6 +223,7 @@
 			<td><%=location%> </td>
 			<td><%=state%></td>
 			<td><%=PostalCode%></td>
+			<td><img src="<%=imageurl%>" height=100 width=100></td>
 			<td><%=completeddate%></td>
 		</tr>
 	</script>

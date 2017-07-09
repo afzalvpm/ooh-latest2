@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 var json2xls = require('json2xls');
 var fs = require('fs');
+var http = require('http');
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	console.log("Sssss")
 	res.render('signin', { title: 'OOH' });
 });
 router.get('/signin/', function(req, res, next) {
@@ -36,6 +38,9 @@ router.get('/jobs-landing/', function(req, res, next) {
 
 router.get('/jobs-progress/', function(req, res, next) {
 	res.render('jobs-progress', { title: 'OOH' });
+});
+router.get('/jobs-assigned/', function(req, res, next) {
+	res.render('jobs-assigned', { title: 'OOH' });
 });	
 
 router.get('/inspection-landing/', function(req, res, next) {
@@ -79,6 +84,15 @@ router.get('/completed-inspection/', function(req, res, next) {
 
 router.get('/user-landing/', function(req, res, next) {
 	res.render('user-landing', { title: 'OOH' });
+});
+
+router.get('/verify-email/', function(req, res, next) {
+	var email_id = req.param('email');
+	var code = req.param('code');
+	http.get("http://api.ipify.org?format=json", function(res) {
+
+	})
+	res.render('signin', { title: ''});
 });
 
 module.exports = router;

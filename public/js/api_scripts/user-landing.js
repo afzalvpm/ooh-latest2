@@ -56,8 +56,8 @@ $(document).on("click",".pagination-element",function(){
 	kumulos_init.call('auditordetails',post_data,function(res){
 		$("#job-list").html("")
 		var template = _.template($('#job-template').html());
-		var job_array = res[0]
-		var job_array_length = Object.keys(res[0]).length
+		var job_array = res[0]['data']
+		var job_array_length = Object.keys(res[0]['data']).length
 		for(i=0;i<job_array_length;i++){
 			var element = job_array[i]
 			element['userid'] = element['userdetailID']
