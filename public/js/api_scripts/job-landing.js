@@ -6,7 +6,7 @@ function load_auditor(){
 		numberofrec:numberofrecs,
 		jwt_token:localStorage['ooh-jwt-token']
 	}
-	var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
+	var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('77d8a0b0-b7a1-4e8f-ad51-61f413feb685', 'rqgJTOIfusC6IqQFNAaAinX2VvEyZP0V1E4d');
 	kumulos_init.call('auditordetails',post_data,function(res){
 		console.log(res)
 		$("#auditor-list").html("")

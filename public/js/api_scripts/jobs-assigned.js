@@ -4,9 +4,11 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiYWZ6YWwiLCJhIjoiY2oyMGx2dzE0MDA1cTJ3cW1kOGVwc
 var map = L.mapbox.map('map-area', 'mapbox.streets').setView([-24.994167,134.866944], 4);
 
 $(document).on("click",".pagination-element",function(){
-	$(".pagination-element").removeClass("active")
-	var numberofrec=9 ;
-	var offset = parseInt($(this).attr("data-index"))*numberofrec;
+	
+})
+function update_jobs(page){
+	var numberofrec=$("#pagination-limit").val();
+	var offset = parseInt(page)*numberofrec;
 	$(this).addClass("active")
 	var post_data = {
 		status:"WIP",
@@ -17,72 +19,71 @@ $(document).on("click",".pagination-element",function(){
 		userid:0,
 		jwt_token:localStorage['ooh-jwt-token']
 	}
+	console.log(post_data)
 	if(typeof(localStorage['ooh-jwt-token'])!=undefined){
 		var template = _.template($('#job-template').html());
 		var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
-		kumulos_init.call('viewalljobsdetails',post_data,function(res){
+		kumulos_init.call('viewassignedjobs',post_data,function(res){
+			console.log( res[0]['data'])
 			var job_array = res[0]['data']
 			var job_array_length = Object.keys(res[0]['data']).length
 			if(job_array_length){
-				console.log(res)
 				$("#job-list").html("")				
 				var template = _.template($('#job-template').html());
 				for(i=0;i<job_array.length;i++){
-					var element = job_array[i]
+					var element = job_array[i];
 					element['state'] = element['statePostalCode'].split(" ")[0]
 					element['PostalCode'] = element['statePostalCode'].split(" ")[1]
 					var date = new Date(parseInt(element.completedDate));
 					element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
-
 					$("#job-list").append(template(element));
-
 				}
 			}
 		})
 	}
-})
-$(document).on("click",".pagination .last-element",function(e){
-	e.preventDefault();
-	$('.pagination > .pagination-element').addClass("hide");
-	$('.pagination > .pagination-element').slice(-5).removeClass("hide");
-	if($('.pagination > .pagination-element').not("hide").length>5)
-		$('.pagination > .pagination-element').not("hide").first().addClass("hide");
-	$('.pagination > .pagination-element').not("hide").last().click()
+}
+// $(document).on("click",".pagination .last-element",function(e){
+// 	e.preventDefault();
+// 	$('.pagination > .pagination-element').addClass("hide");
+// 	$('.pagination > .pagination-element').slice(-5).removeClass("hide");
+// 	if($('.pagination > .pagination-element').not("hide").length>5)
+// 		$('.pagination > .pagination-element').not("hide").first().addClass("hide");
+// 	$('.pagination > .pagination-element').not("hide").last().click()
 
-})
-$(document).on("click",".pagination .first-element",function(e){
-	e.preventDefault();
-	$('.pagination > .pagination-element').addClass("hide");
-	$('.pagination > .pagination-element').slice(0,5).removeClass("hide");
-	if($('.pagination > .pagination-element').not("hide").length>5)
-		$('.pagination > .pagination-element').not("hide").last().addClass("hide");
-	$('.pagination > .pagination-element').not("hide").first().click()
-})
-$(document).on("click",".pagination .previous-element",function(e){
-	e.preventDefault();
-	var current_element = $(".pagination-element.active")
-	if(current_element.prev().hasClass("pagination-element")){
-		$(".pagination-element").not("hide").last("hide");
-		if($(".pagination > .pagination-element").not(".hide").length>5)
-			$(".pagination > .pagination-element").not(".hide").last().addClass("hide")
-		current_element.prev().removeClass("hide").addClass("active").click()
-	}
-})
-$(document).on("click",".pagination .next-element",function(e){
-	e.preventDefault();
-	var current_element = $(".pagination-element.active")
-	if(current_element.next().hasClass("pagination-element")){
-		$(".pagination-element").not("hide").first("hide");
-		if($(".pagination > .pagination-element").not(".hide").length>5)
-			$(".pagination > .pagination-element").not(".hide").first().addClass("hide")
-		current_element.next().removeClass("hide").addClass("active").click()
-	}
-})
+// })
+// $(document).on("click",".pagination .first-element",function(e){
+// 	e.preventDefault();
+// 	$('.pagination > .pagination-element').addClass("hide");
+// 	$('.pagination > .pagination-element').slice(0,5).removeClass("hide");
+// 	if($('.pagination > .pagination-element').not("hide").length>5)
+// 		$('.pagination > .pagination-element').not("hide").last().addClass("hide");
+// 	$('.pagination > .pagination-element').not("hide").first().click()
+// })
+// $(document).on("click",".pagination .previous-element",function(e){
+// 	e.preventDefault();
+// 	var current_element = $(".pagination-element.active")
+// 	if(current_element.prev().hasClass("pagination-element")){
+// 		$(".pagination-element").not("hide").last("hide");
+// 		if($(".pagination > .pagination-element").not(".hide").length>5)
+// 			$(".pagination > .pagination-element").not(".hide").last().addClass("hide")
+// 		current_element.prev().removeClass("hide").addClass("active").click()
+// 	}
+// })
+// $(document).on("click",".pagination .next-element",function(e){
+// 	e.preventDefault();
+// 	var current_element = $(".pagination-element.active")
+// 	if(current_element.next().hasClass("pagination-element")){
+// 		$(".pagination-element").not("hide").first("hide");
+// 		if($(".pagination > .pagination-element").not(".hide").length>5)
+// 			$(".pagination > .pagination-element").not(".hide").first().addClass("hide")
+// 		current_element.next().removeClass("hide").addClass("active").click()
+// 	}
+// })
 
 
 
 $(function(){ 
-	var numberofrecs = 9;
+	var numberofrecs = 10;
 	var max_pagination_elements = 5;
 	var post_data = {
 		status:"WIP",
@@ -101,7 +102,7 @@ $(function(){
 			var job_array = res[0]['data']
 			var job_array_length = Object.keys(res[0]['data']).length
 			var template = _.template($('#job-template').html());
-			for(i=0;i<job_array.length;i++){
+			for(i=0;i<job_array_length;i++){
 				var element = job_array[i]
 				element['state'] = element['statePostalCode'].split(" ")[0]
 				element['PostalCode'] = element['statePostalCode'].split(" ")[1]
@@ -109,23 +110,29 @@ $(function(){
 				element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
 				$("#job-list").append(template(element));
 			}
-			debugger
 			var pagination_limit = res[0]['totalcount']/numberofrecs;
 			var no_elements = parseInt(pagination_limit);
 			if(pagination_limit.toString().indexOf(".")>0 && pagination_limit>0){
 				no_elements +=1 ;
 			}
-			if(no_elements>1 && job_array.length){
-				var element_array = [];
-				var template = _.template($('#pagination-template').html());
-				for(i=0;i<no_elements;i++){
-					var is_hidden = max_pagination_elements > i ? false : true;
-					element_array.push({label:i+1,index:i,is_hidden:is_hidden});
+			$('.pagination').find("input").attr("data-max-page",no_elements)
+			$('.pagination').jqPagination({
+				paged: function(page) {
+					update_jobs(page-1);
 				}
-				$(".pagination").html(template({items:element_array}));
+			});
+
+			// if(no_elements>1 && job_array.length){
+			// 	var element_array = [];
+			// 	var template = _.template($('#pagination-template').html());
+			// 	for(i=0;i<no_elements;i++){
+			// 		var is_hidden = max_pagination_elements > i ? false : true;
+			// 		element_array.push({label:i+1,index:i,is_hidden:is_hidden});
+			// 	}
+			// 	$(".pagination").html(template({items:element_array}));
 
 
-			}
+			// }
 		})
 	}
 });
@@ -161,9 +168,44 @@ $(document).on("click",".view-map",function(){
     	this.closePopup();
     })
     current_markers.push(auditormarker)
-	$("#map-modal").modal('show');
-	setTimeout(function(){
-		map.invalidateSize();
-	},1000)
+    $("#map-modal").modal('show');
+    setTimeout(function(){
+    	map.invalidateSize();
+    },1000)
 
+})
+
+$(document).on("change","#pagination-limit",function(){
+	// $(".pagination").jqPagination('destroy')
+	var numberofrecs = parseInt($(this).val())
+	var offset = 0;
+	$(this).addClass("active")
+	var post_data = {
+		status:"WIP",
+		numberofrec:numberofrecs,
+		offset:0,
+		username:"ALL",
+		email:"ALL",
+		userid:0,
+		jwt_token:localStorage['ooh-jwt-token']
+	}
+	if(typeof(localStorage['ooh-jwt-token'])!=undefined){
+		var template = _.template($('#job-template').html());
+		var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
+		kumulos_init.call('viewassignedjobs',post_data,function(res){
+			console.log(res)
+			$("#job-list").html("")
+			var job_array = res[0]['data']
+			var job_array_length = Object.keys(res[0]['data']).length
+			var pagination_limit = res[0]['totalcount']/numberofrecs;
+			var no_elements = parseInt(pagination_limit);
+			if(pagination_limit.toString().indexOf(".")>0 && pagination_limit>0){
+				no_elements +=1 ;
+			}
+			$(".pagination").jqPagination('option', 'max_page', no_elements);
+			$(".pagination").jqPagination('option', 'current_page', 1);
+
+		})
+
+	}
 })
