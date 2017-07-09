@@ -33,17 +33,7 @@
 			height: 100%;
 			overflow: static !important;
 		}
-		#buttons1{
-			left: 268px;
-			top: 100px;;
-			position: absolute;
-			z-index: 9999;
-			background-color: rgba(0, 0, 0, 0.68);
-			padding: 10px 20px;
-			color: #fff;
-			font-family: 'LatoRegular';
-			font-size: 14px;
-		}
+		
 		#buttons label{
 			margin-right: 20px !important;
 			margin-top: 4px;
@@ -51,6 +41,8 @@
 		#buttons1 label{
 			margin-right: 20px !important;
 			margin-top: 4px;
+			color: #000;
+			font-family: "LatoBold";
 		}
 		.marker-cluster-small {
 			background-color: rgba(181, 226, 140, 0.6);
@@ -198,6 +190,7 @@
 						<span class="enterprise-logo">
 							<img src="images/logo.png">
 						</span>
+						
 					</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
@@ -263,72 +256,62 @@
 
 	</section>
 	<div class="container-fluid" id="wrapper-container">
+		<div class="close-filter">
+			<label>
+				Maps Filter
+				<i class="fa fa-filter" aria-hidden="true"></i>
+			</label>
+		</div>
 		<div class="filter-sidebar" id="buttons1">
-			<ul class="list-unstyled">
-				<li>
-					<div class="button-section pull-right text-center search-section">
-						<input type="text" class="form-control" id="search-area" placeholder="Search by name / OISA Data">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" id="search-job-by-name">
-								<i class="fa fa-search" aria-hidden="true"></i>
-							</button>
-							<button class="btn btn-default" type="button" id="clear-search">
-								<i class="fa fa-times" aria-hidden="true"></i>
-							</button>
-						</span>
-					</div>
-				</li>
-				<li>
-					<select id="jobtype-filter" multiple>
-					</select>
-				</li>
-				<li>
-					<div class="btn-group">
-						<a class="btn dropdown-toggle btn-primary filter-dropdown maptype-dropdown" data-toggle="dropdown" href="#" data-type="maptype">
-							<label class="drop-text">Map Type</label>
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li class="active" data-value=""><a href="#">Basic</a></li>
-							<li data-value="Clustered"><a href="#">Clustered</a></li>
-						</ul>
-					</div>
-				</li>
-				<li>
-					<select id="inspectionid-filter" multiple>
-					</select>
-				</li>
-				<li>
-					<select id="state-filter" multiple>
-					</select>
-				</li>
-				<li>
-					<select id="postalcode-filter" multiple>
-					</select>
-				</li>
-				<li>
-					<select id="status-filter" multiple>
-					</select>
-				</li>
-				<li>
-					<select id="contractor-filter" multiple>
-					</select>
-				</li>
-				<li>
-					<select id="campaign-filter" multiple>
-					</select>
-				</li>
-				<li>
-					<select id="errors-filter" multiple>
-					</select>
-				</li>
-				<li>
-					<div class="">
+			<label for="daterange">Search:</label>
+			<div class="input-group button-section pull-right text-center search-section">
+				<input type="text" class="form-control" id="search-area" placeholder="Search by name / OISA Data">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" id="search-job-by-name">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+					<button class="btn btn-default" type="button" id="clear-search">
+						<i class="fa fa-times" aria-hidden="true"></i>
+					</button>
+				</span>
+			</div>
+			<div class="button-section">
+				<label for="daterange">Filter By:</label>
+				<select id="jobtype-filter" multiple>
+				</select>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle btn-primary filter-dropdown maptype-dropdown" data-toggle="dropdown" href="#" data-type="maptype">
+						<label class="drop-text">Map Type</label>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="active" data-value=""><a href="#">Basic</a></li>
+						<li data-value="Clustered"><a href="#">Clustered</a></li>
+					</ul>
+				</div>
+				<select id="inspectionid-filter" multiple>
+				</select>
+				<select id="state-filter" multiple>
+				</select>
+				<select id="postalcode-filter" multiple>
+				</select>
+				<select id="status-filter" multiple>
+				</select>
+			</div>
+			<div class="button-section">
+				<select id="contractor-filter" multiple>
+				</select>
+				<select id="campaign-filter" multiple>
+				</select>
+				<select id="errors-filter" multiple>
+				</select>
+				<div class="btn-group">
+					<div class="form-group">
 						<label for="daterange">Date Range:</label>
 						<input type="text" class="form-control" name="daterange" id="daterange">
 					</div>
-				</li>
-			</ul>
+				</div>
+			</div>
 		</div>
 		<div id="map" style="position: absolute;width: 100%;"></div>
 		<div id="campground_info"></div>
@@ -348,7 +331,10 @@
 	<script src="js/api_scripts/map_view.js"></script>
 	<script src="js/api_scripts/user_data.js"></script>
 	<script>
-		
+		$(".close-filter").on("click",function (){
+			$(".filter-sidebar").toggleClass("active");
+			$(this).toggleClass("active");
+		});
 	</script>
 </body>
 </html>

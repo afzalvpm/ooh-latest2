@@ -5,6 +5,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: #F2F4F6;
+	overflow: hidden;
 }
 .pad0 {
 	padding: 0px;
@@ -124,20 +125,74 @@ ul,li{
 }
 
 /*filter sidebar*/
-.filter-sidebar{
-	width: 300px;
+.close-filter{
 	position: absolute;
-	top: 0px;
-	background-color: #fff;
 	right: 0px;
 	z-index: 9999;
+	background-color: #fff;
+	padding: 15px 20px;
+	top: 90px;
+	font-family: 'LatoBold';
+	cursor: pointer;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
-.filter-sidebar ul li{
-	display: block;
+.close-filter.active{
+	right: 300px;
+}
+.close-filter label{
+	cursor: pointer;
+}
+.close-filter .fa{
+	margin-left: 5px;
+}
+.filter-sidebar label{
+	margin-bottom: 20px;
+}
+.filter-sidebar #search-area{
+	width: 187px;
+}
+.filter-sidebar{
+	position: absolute;
+	z-index: 9999;
+	background-color: #fff;
+	padding: 10px 20px;
+	color: #fff;
+	font-family: 'LatoBold';
+	font-size: 14px;
+	width: 300px;
+	height: 100vh;
+	top: 0px;
+	right: -300px;
+	overflow: auto;
+	padding-bottom: 40px;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.filter-sidebar.active{
+	right: 0px;
+}
+.filter-sidebar .filter-dropdown{
+	background-color: transparent;
+}
+.filter-sidebar .btn-group{
 	width: 100%;
 }
-.filter-sidebar ul li select{
+.filter-sidebar .btn-group>.btn {
 	width: 100%;
+	text-align: left;
+	margin-bottom: 15px;
+	height: 40px;
+	border: 1px solid #ddd;
+}
+.filter-sidebar .btn .caret {
+	float: right;
+	margin-top: 8px;
+	color: #bbb;
 }
 /*responsive css*/
 @media screen and (max-width: 991px) {
@@ -149,6 +204,10 @@ ul,li{
 	}
 	.width49{
 		width: 100%;
+	}
+	.close-filter {
+		padding: 10px 10px;
+		font-size: 12px;
 	}
 }
 
