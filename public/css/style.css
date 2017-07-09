@@ -94,11 +94,8 @@ ul,li{
 .input-append .add-on i{
 	margin-top: 5px;
 }
-.modalalign{
-	height: 400px;
-}
-.modalalign .modal-dialog{
-	margin:0px;
+.modalalign.in{
+	z-index: 9999;
 }
 .error{
 	color: red !important;
@@ -117,6 +114,13 @@ ul,li{
 	font-size: 12px;
 	text-decoration: underline;
 	color: #3b5bb2;
+}
+.limitData{
+	font-family: "LatoRegular";
+	text-align: left;
+	margin-right: 20px;
+	width: 200px;
+	margin-bottom: 30px;
 }
 /*responsive css*/
 @media screen and (max-width: 991px) {

@@ -147,17 +147,18 @@
 									<h5>Jobs In Progress</h5>
 								</div>
 								{{!-- <div class="input-group pull-right">
-									<input type="text" class="form-control search-area" placeholder="Search by name / OISA Data">
-									<span class="input-group-btn">
-										<button class="btn btn-default search-job-by-name" type="button">
-											<i class="fa fa-search" aria-hidden="true"></i>
-										</button>
-										<button class="btn btn-default clear-search" type="button">
-											<i class="fa fa-times" aria-hidden="true"></i>
-										</button>
-									</span>
-								</div> --}}
-							</div>
+								<input type="text" class="form-control search-area" placeholder="Search by name / OISA Data">
+								<span class="input-group-btn">
+									<button class="btn btn-default search-job-by-name" type="button">
+										<i class="fa fa-search" aria-hidden="true"></i>
+									</button>
+									<button class="btn btn-default clear-search" type="button">
+										<i class="fa fa-times" aria-hidden="true"></i>
+									</button>
+								</span>
+							</div> --}}
+						</div>
+						<div class="table-responsive">
 							<table class="table" data-type="WIP">
 								<thead>
 									<tr>
@@ -174,149 +175,154 @@
 									
 								</tbody>
 							</table>
-							<nav class="text-center">
-								<ul class="pagination" data-type="WIP">
-								</ul>
-							</nav>
 						</div>
+						<nav class="text-center">
+							<ul class="pagination" data-type="WIP">
+							</ul>
+						</nav>
 					</div>
-					<!-- completed jobs -->
-					<div id="confirm-section">
-						<div class="booking-details">
-							<div class="dd-data" data-type="completed">
-								<div class="view-data">
-									<h5>View Completed Jobs</h5>
-								</div>
-								<div class="input-group pull-right">
-									<input type="text" class="form-control search-area" placeholder="Search by name / OISA Data" data-type="completed">
-									<span class="input-group-btn">
-										<button class="btn btn-default search-job-by-name" type="button">
-											<i class="fa fa-search" aria-hidden="true"></i>
-										</button>
-										<button class="btn btn-default clear-search" type="button">
-											<i class="fa fa-times" aria-hidden="true"></i>
-										</button>
-									</span>
-								</div>
+				</div>
+				<!-- completed jobs -->
+				<div id="confirm-section">
+					<div class="booking-details">
+						<div class="dd-data" data-type="completed">
+							<div class="view-data">
+								<h5>View Completed Jobs</h5>
 							</div>
+							<div class="input-group pull-right">
+								<input type="text" class="form-control search-area" placeholder="Search by name / OISA Data" data-type="completed">
+								<span class="input-group-btn">
+									<button class="btn btn-default search-job-by-name" type="button">
+										<i class="fa fa-search" aria-hidden="true"></i>
+									</button>
+									<button class="btn btn-default clear-search" type="button">
+										<i class="fa fa-times" aria-hidden="true"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+						<div class="table-responsive">
 							<table class="table" data-type="completed">
 								<thead>
 									<tr>
 										{{!-- <th>
-											<div class="checkbox">
-												<label>
-													<input type="checkbox">
-												</label>
-											</div>
-										</th> --}}
-										{{!-- <th>Full Name</th> --}}
-										<th>JOB ID</th>
-										<th>SIN</th>
-										<th>TYPE</th>
-										<th>Location</th>
-										<th>State Postal Code</th>
-										<th>Completed date &amp; time</th>
-									</tr>
-								</thead>
-								<tbody class="job-list" data-type="completed">
-									
-								</tbody>
-							</table>
-							<nav class="text-center">
-								<ul class="pagination" data-type="completed">
-									
-								</ul>
-							</nav>
-						</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox">
+											</label>
+										</div>
+									</th> --}}
+									{{!-- <th>Full Name</th> --}}
+									<th>JOB ID</th>
+									<th>SIN</th>
+									<th>TYPE</th>
+									<th>Location</th>
+									<th>State Postal Code</th>
+									<th>Completed date &amp; time</th>
+								</tr>
+							</thead>
+							<tbody class="job-list" data-type="completed">
+
+							</tbody>
+						</table>
 					</div>
-					<!-- canceled jobs -->
-					<div id="confirm-section">
-						<div class="booking-details">
-							<div class="dd-data" data-type="canceled">
-								<div class="view-data">
-									<h5>View Canceled Jobs</h5>
-								</div>
-								{{!-- <div class="input-group pull-right">
-									<input type="text" class="form-control search-area" placeholder="Search by name / OISA Data">
-									<span class="input-group-btn">
-										<button class="btn btn-default search-job-by-name" type="button">
-											<i class="fa fa-search" aria-hidden="true"></i>
-										</button>
-										<button class="btn btn-default clear-search" type="button">
-											<i class="fa fa-times" aria-hidden="true"></i>
-										</button>
-									</span>
-								</div> --}}
-							</div>
-							<table class="table" data-type="canceled">
-								<thead>
-									<tr>
-										{{!-- <th>
-											<div class="checkbox">
-												<label>
-													<input type="checkbox">
-												</label>
-											</div>
-										</th> --}}
-										{{!-- <th>Full Name</th> --}}
-										<th>JOB ID</th>
-										<th>SIN</th>
-										<th>TYPE</th>
-										<th>Overall Status</th>
-										<th>Completed date &amp; time</th>
-									</tr>
-								</thead>
-								<tbody class="job-list" data-type="canceled">
-									
-								</tbody>
-							</table>
-							<nav class="text-center">
-								<ul class="pagination" data-type="canceled">
-								</ul>
-							</nav>
-						</div>
-					</div>
+					<nav class="text-center">
+						<ul class="pagination" data-type="completed">
+
+						</ul>
+					</nav>
 				</div>
 			</div>
-		</section>
-	</div>
-	<script type="text/template" class="job-template" data-type="completed">
-		<tr>
-			{{!-- <td>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox">
-					</label>
+			<!-- canceled jobs -->
+			<div id="confirm-section">
+				<div class="booking-details">
+					<div class="dd-data" data-type="canceled">
+						<div class="view-data">
+							<h5>View Canceled Jobs</h5>
+						</div>
+						{{!-- <div class="input-group pull-right">
+						<input type="text" class="form-control search-area" placeholder="Search by name / OISA Data">
+						<span class="input-group-btn">
+							<button class="btn btn-default search-job-by-name" type="button">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+							<button class="btn btn-default clear-search" type="button">
+								<i class="fa fa-times" aria-hidden="true"></i>
+							</button>
+						</span>
+					</div> --}}
 				</div>
-			</td> --}}
-			{{!-- <td><%=name%></td> --}}
-			<td><%=jobid%></td>
-			<td><%=siteId%></td>
-			<td><%=jobtype%></td>
-			<td><%=location%> </td>
-			<td><%=statePostalCode%></td>
-			<td><%=completeddate%></td>
-		</tr>
-	</script>
-	<script type="text/template" class="job-template" data-type="WIP">
-		<tr>
-			{{!-- <td><%=name%></td> --}}
-			<td><%=jobid%></td>
-			<td><%=siteId%></td>
+				<div class="table-responsive">
+					<table class="table" data-type="canceled">
+						<thead>
+							<tr>
+								{{!-- <th>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox">
+									</label>
+								</div>
+							</th> --}}
+							{{!-- <th>Full Name</th> --}}
+							<th>JOB ID</th>
+							<th>SIN</th>
+							<th>TYPE</th>
+							<th>Overall Status</th>
+							<th>Completed date &amp; time</th>
+						</tr>
+					</thead>
+					<tbody class="job-list" data-type="canceled">
 
-			<td>
-				<div class="progress">
-					<div class="progress-bar" role="progressbar" aria-valuenow="<%=completeness%>"
-						aria-valuemin="0" aria-valuemax="100" style="width:<%=completeness%>%">
-						<span class="sr-only"><%=completeness%>% Complete</span>
-					</div>
+					</tbody>
+				</table>
+			</div>
+			<nav class="text-center">
+				<ul class="pagination" data-type="canceled">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+</div>
+</section>
+</div>
+<script type="text/template" class="job-template" data-type="completed">
+	<tr>
+		{{!-- <td>
+		<div class="checkbox">
+			<label>
+				<input type="checkbox">
+			</label>
+		</div>
+	</td> --}}
+	{{!-- <td><%=name%></td> --}}
+	<td><%=jobid%></td>
+	<td><%=siteId%></td>
+	<td><%=jobtype%></td>
+	<td><%=location%> </td>
+	<td><%=statePostalCode%></td>
+	<td><%=completeddate%></td>
+</tr>
+</script>
+<script type="text/template" class="job-template" data-type="WIP">
+	<tr>
+		{{!-- <td><%=name%></td> --}}
+		<td><%=jobid%></td>
+		<td><%=siteId%></td>
+
+		<td>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="<%=completeness%>"
+					aria-valuemin="0" aria-valuemax="100" style="width:<%=completeness%>%">
+					<span class="sr-only"><%=completeness%>% Complete</span>
 				</div>
-			</td>
+			</div>
 		</td>
-		<td><%=location%></td>
-		<td><%=statePostalCode%></td>
-		<td><%=completeddate%></td>
-	</tr>
+	</td>
+	<td><%=location%></td>
+	<td><%=statePostalCode%></td>
+	<td><%=completeddate%></td>
+</tr>
 </script>
 <script type="text/template" class="job-template" data-type="canceled">
 </script>
@@ -325,29 +331,29 @@
 	<li class="previous-element"><a href="#" aria-label="Previous" data-action="previous"><span aria-hidden="true">«</span></a></li>
 	<input class="hide" type="text" readonly="readonly" data-max-page="<%=items.length%>"/>
 	<%_.each(items, function(item) {%>
-		<%if(item.index ==0){%>
-			<li class="pagination-element active" data-index="<%=item.index%>">
-				<%}else{%>
-					<%if(item.is_hidden){%>
-						<li class="pagination-element hide" data-index="<%=item.index%>">
-							<%}else{%>
-								<li class="pagination-element" data-index="<%=item.index%>">
-									<%}}%>
-									<a href="#"><%=item.label%></a>
-								</li>
-								<%})%>
-	<li class="next-element"><a href="#" aria-label="Next" data-action="next"><span aria-hidden="true">»</span></a></li>
-	<li class="last-element" data-action="last"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
-</script>
-<script src="js/vendor/jquery-3.1.0.min.js"></script>
-<script src="js/vendor/bootstrap.min.js"></script>
-<script src="js/scripts.js"></script>
-<script type="text/javascript" src="http://c3173.r73.cf2.rackcdn.com/Kumulos.min.js"></script>
-<script src="js/vendor/underscore.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stupidtable/1.0.3/stupidtable.min.js"></script>
-<script src="js/api_scripts/user_details.js"></script>
-<script src="js/api_scripts/user_data.js"></script>
+	<%if(item.index ==0){%>
+	<li class="pagination-element active" data-index="<%=item.index%>">
+		<%}else{%>
+		<%if(item.is_hidden){%>
+		<li class="pagination-element hide" data-index="<%=item.index%>">
+			<%}else{%>
+			<li class="pagination-element" data-index="<%=item.index%>">
+				<%}}%>
+				<a href="#"><%=item.label%></a>
+			</li>
+			<%})%>
+			<li class="next-element"><a href="#" aria-label="Next" data-action="next"><span aria-hidden="true">»</span></a></li>
+			<li class="last-element" data-action="last"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+		</script>
+		<script src="js/vendor/jquery-3.1.0.min.js"></script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+		<script src="js/scripts.js"></script>
+		<script type="text/javascript" src="http://c3173.r73.cf2.rackcdn.com/Kumulos.min.js"></script>
+		<script src="js/vendor/underscore.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stupidtable/1.0.3/stupidtable.min.js"></script>
+		<script src="js/api_scripts/user_details.js"></script>
+		<script src="js/api_scripts/user_data.js"></script>
 
-</body>
-</html>
+	</body>
+	</html>

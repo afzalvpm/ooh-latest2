@@ -14,7 +14,7 @@
 }
 .inspection-data label{
   font-family: "LatoRegular";
-  font-size: 18px;
+  font-size: 15px;
   padding-left: 10px;
 }
 .graph-data{
@@ -123,11 +123,11 @@ select {
   display: inline-block;
 }
 #confirm-section table tr th {
-  font-size: 14px;
+  font-size: 13px;
   font-family: 'LatoRegular';
   color: #7F90A4;
   border-bottom: 1px solid rgba(127, 144, 164, 0.12);
-  padding: 15px 20px;
+  padding: 15px 15px;
 }
 #confirm-section table tbody tr td.name {
   color: #545860;
@@ -136,10 +136,24 @@ select {
 }
 #confirm-section table tbody tr td {
   color: #8595A8;
-  padding: 15px 20px;
+  padding: 15px 15px;
   vertical-align: middle;
+  font-size: 14px;
+}
+.j-img{
+  width: 50px;
 }
 /*responsive css*/
+@media screen and (min-width: 992px) and (max-width: 1280px){
+   #confirm-section table tr th {
+    font-size: 13px;
+    padding: 15px 5px;
+  }
+  #confirm-section table tbody tr td {
+    padding: 15px 5px;
+    font-size: 13px;
+  }
+}
 @media screen and (max-width: 991px) {
   #inspection-data {
     margin-bottom: 20px;
@@ -169,5 +183,13 @@ select {
     top: 0px;
     float: none !important;
     margin: 20px 20px;
+  }
+  #confirm-section table tr th {
+    font-size: 13px;
+    padding: 15px 5px;
+  }
+  #confirm-section table tbody tr td {
+    padding: 15px 5px;
+    font-size: 13px;
   }
 }

@@ -115,7 +115,7 @@
 			<!-- main wrapper -->
 			<div class="container-fluid" id="wrapper-container">
 				<div class="col-md-12 inspection-list jobs-tab">
-					<div class="col-md-4 mpad0 text-center">
+					<div class="col-md-3 mpad0 text-center">
 						<div class="inspection-data">
 							<a href="/jobs-landing">
 								<img src="images/job1.png" alt="">
@@ -123,7 +123,7 @@
 							</div>
 						</a>
 					</div>
-					<div class="col-md-4 mpad0 text-center">
+					<div class="col-md-3 mpad0 text-center">
 						<div class="inspection-data active">
 							<a href="/jobs-confirmed">
 								<img src="images/job2.png" alt="">
@@ -131,7 +131,7 @@
 							</a>
 						</div>
 					</div>
-					<div class="col-md-4 mpad0 text-center">
+					<div class="col-md-3 mpad0 text-center">
 						<div class="inspection-data">
 							<a href="/jobs-progress">
 								<img src="images/job3.png" alt="">
@@ -139,7 +139,7 @@
 							</a>
 						</div>
 					</div>
-					<div class="col-md-4 mpad0 text-center">
+					<div class="col-md-3 mpad0 text-center">
 						<div class="inspection-data">
 							<a href="/jobs-assigned">
 								<img src="images/job3.png" alt="">
@@ -148,7 +148,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-12" id="confirm-section">
+				<div class="col-md-12 mpad0" id="confirm-section">
 					<div class="booking-details">
 						<div class="dd-data">
 							<div class="view-data">
@@ -166,34 +166,53 @@
 								</span>
 							</div>
 						</div>
-						<table class="table">
-							<thead>
-								<tr>
-									<th>
-										<div class="checkbox">
-											<label>
-												<input type="checkbox" id="select-all-jobs">
-											</label>
-										</div>
-									</th>
-									<th data-sort="string">Full Name <i class="fa fa-sort" aria-hidden="true"></th>
-									<th data-sort="string">JOB ID <i class="fa fa-sort" aria-hidden="true"></th>
-									<th data-sort="string">SIN <i class="fa fa-sort" aria-hidden="true"></th>
-									<th data-sort="string">TYPE <i class="fa fa-sort" aria-hidden="true"></th>
-									<th data-sort="string">Location <i class="fa fa-sort" aria-hidden="true"></th>
-									<th data-sort="string">State <i class="fa fa-sort" aria-hidden="true"></th>
-									<th data-sort="string">Postal Code <i class="fa fa-sort" aria-hidden="true"></th>
-									<th>Thumbnail </th>
-									<th data-sort="string">Completed date & time <i class="fa fa-sort" aria-hidden="true"></th>
-								</tr>
-							</thead>
-							<tbody id="job-list">
-								
-							</tbody>
-						</table>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" id="select-all-jobs">
+												</label>
+											</div>
+										</th>
+										<th data-sort="string">
+											Full Name <i class="fa fa-sort" aria-hidden="true">
+										</th>
+										<th data-sort="string">
+											JOB ID <i class="fa fa-sort" aria-hidden="true">
+										</th>
+										<th data-sort="string">
+											SIN <i class="fa fa-sort" aria-hidden="true">
+										</th>
+										<th data-sort="string">
+											TYPE <i class="fa fa-sort" aria-hidden="true">
+										</th>
+										<th data-sort="string">
+											Location <i class="fa fa-sort" aria-hidden="true">
+										</th>
+										<th data-sort="string">
+											State <i class="fa fa-sort" aria-hidden="true">
+										</th>
+										<th data-sort="string">
+											Postal Code <i class="fa fa-sort" aria-hidden="true">
+										</th>
+										<th>Thumbnail </th>
+										<th data-sort="string">
+											Completed date & time 
+											<i class="fa fa-sort" aria-hidden="true"/>
+										</th>
+									</tr>
+								</thead>
+								<tbody id="job-list">
+
+								</tbody>
+							</table>
+						</div>
 						<nav class="text-center">
 							<ul class="pagination">
-								
+
 							</ul>
 						</nav>
 						<div class="download-data hide">
@@ -223,7 +242,7 @@
 			<td><%=location%> </td>
 			<td><%=state%></td>
 			<td><%=PostalCode%></td>
-			<td><img src="<%=imageurl%>" height=100 width=100></td>
+			<td><img src="<%=imageurl%>" class="j-img"></td>
 			<td><%=completeddate%></td>
 		</tr>
 	</script>
@@ -232,35 +251,35 @@
 		<li class="previous-element"><a href="#" aria-label="Previous" data-action="previous"><span aria-hidden="true">«</span></a></li>
 		<input class="hide" type="text" readonly="readonly" data-max-page="<%=items.length%>"/>
 		<%_.each(items, function(item) {%>
-			<%if(item.index ==0){%>
-				<li class="pagination-element active" data-index="<%=item.index%>">
-					<%}else{%>
-						<%if(item.is_hidden){%>
-							<li class="pagination-element hide" data-index="<%=item.index%>">
-								<%}else{%>
-									<li class="pagination-element" data-index="<%=item.index%>">
-										<%}}%>
-										<a href="#"><%=item.label%></a>
-									</li>
-									<%})%>
-		<li class="next-element"><a href="#" aria-label="Next" data-action="next"><span aria-hidden="true">»</span></a></li>
-		<li class="last-element" data-action="last"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
-	</script>
-	<script src="js/vendor/jquery-3.1.0.min.js"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/scripts.js"></script>
-	<script src="js/vendor/underscore.min.js"></script>
-	<script type="text/javascript" src="http://c3173.r73.cf2.rackcdn.com/Kumulos.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-	<script src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
-	<script src="http://sheetjs.com/demos/Blob.js"></script>
-	<script type="text/javascript" src="https://rawgit.com/eligrey/FileSaver.js/master/FileSaver.js"></script>
-	<script src="js/simple-excel.js"></script>
-	<script src="js/ajax_helper.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/stupidtable/1.0.3/stupidtable.min.js"></script>
+		<%if(item.index ==0){%>
+		<li class="pagination-element active" data-index="<%=item.index%>">
+			<%}else{%>
+			<%if(item.is_hidden){%>
+			<li class="pagination-element hide" data-index="<%=item.index%>">
+				<%}else{%>
+				<li class="pagination-element" data-index="<%=item.index%>">
+					<%}}%>
+					<a href="#"><%=item.label%></a>
+				</li>
+				<%})%>
+				<li class="next-element"><a href="#" aria-label="Next" data-action="next"><span aria-hidden="true">»</span></a></li>
+				<li class="last-element" data-action="last"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+			</script>
+			<script src="js/vendor/jquery-3.1.0.min.js"></script>
+			<script src="js/vendor/bootstrap.min.js"></script>
+			<script src="js/scripts.js"></script>
+			<script src="js/vendor/underscore.min.js"></script>
+			<script type="text/javascript" src="http://c3173.r73.cf2.rackcdn.com/Kumulos.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+			<script src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
+			<script src="http://sheetjs.com/demos/Blob.js"></script>
+			<script type="text/javascript" src="https://rawgit.com/eligrey/FileSaver.js/master/FileSaver.js"></script>
+			<script src="js/simple-excel.js"></script>
+			<script src="js/ajax_helper.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/stupidtable/1.0.3/stupidtable.min.js"></script>
 
-	<script src="js/api_scripts/jobs-confirmed.js"></script>
-	<script src="js/api_scripts/user_data.js"></script>
+			<script src="js/api_scripts/jobs-confirmed.js"></script>
+			<script src="js/api_scripts/user_data.js"></script>
 
-</body>
-</html>
+		</body>
+		</html>

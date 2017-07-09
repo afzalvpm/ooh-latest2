@@ -117,7 +117,7 @@
 			<!-- main wrapper -->
 			<div class="container-fluid" id="wrapper-container">
 				<div class="col-md-12 inspection-list jobs-tab">
-					<div class="col-md-4 mpad0 text-center">
+					<div class="col-md-3 mpad0 text-center">
 						<div class="inspection-data">
 							<a href="/jobs-landing">
 								<img src="images/job1.png" alt="">
@@ -125,7 +125,7 @@
 							</div>
 						</a>
 					</div>
-					<div class="col-md-4 mpad0 text-center">
+					<div class="col-md-3 mpad0 text-center">
 						<div class="inspection-data">
 							<a href="/jobs-confirmed">
 								<img src="images/job2.png" alt="">
@@ -133,7 +133,7 @@
 							</a>
 						</div>
 					</div>
-					<div class="col-md-4 mpad0 text-center">
+					<div class="col-md-3 mpad0 text-center">
 						<div class="inspection-data">
 							<a href="/jobs-progress">
 								<img src="images/job3.png" alt="">
@@ -141,7 +141,7 @@
 							</a>
 						</div>
 					</div>
-					<div class="col-md-4 mpad0 text-center">
+					<div class="col-md-3 mpad0 text-center">
 						<div class="inspection-data active">
 							<a href="/jobs-assigned">
 								<img src="images/job3.png" alt="">
@@ -156,65 +156,73 @@
 					<div class="b-header">
 						<h5>Jobs In Progress</h5>
 					</div>
-					<table class="table">
-						<thead>
-							<tr>
-								<th data-sort="string" data-type="name">siteId <i class="fa fa-sort" aria-hidden="true"></i> </th>
-								<th data-sort="string" data-type="status">Location <i class="fa fa-sort" aria-hidden="true"></i> </th>
-								<!-- <th data-sort="string">StatePostalCode <i class="fa fa-sort" aria-hidden="true"></th> -->
-								<!-- <th data-sort="string">Location <i class="fa fa-sort" aria-hidden="true"></th> -->
-								<th data-sort="string">GeoCodedLocation <i class="fa fa-sort" aria-hidden="true"></th>
-								<th data-sort="string">State <i class="fa fa-sort" aria-hidden="true"></th>
-								<th data-sort="string">Postal Code <i class="fa fa-sort" aria-hidden="true"></th>
-								<th>Location on MAP</th>
-								<th data-sort="string">Start Date <i class="fa fa-sort" aria-hidden="true"></i></th>
-								<th data-sort="string">End Date <i class="fa fa-sort" aria-hidden="true"></i></th>
-							</tr>
-						</thead>
-						<tbody id="job-list">
-						</tbody>
-					</table>
-					<nav class="text-center">
-						<!-- <ul class="pagination">
-
-					</ul> -->
-					<label for="pagination-limit">Pagination Limit</label>
-					<select class="form-control" id="pagination-limit">
-						<option value="10">10</option>
-						<option value="20">20</option>
-						<option value="30">30</option>
-						<option value="40">40</option>
-						<option value="50">50</option>
-						<option value="60">60</option>
-						<option value="70">70</option>
-						<option value="80">80</option>
-						<option value="90">90</option>
-						<option value="100">100</option>
-						<option value="200">200</option>
-						<option value="300">300</option>
-						<option value="400">400</option>
-						<option value="500">500</option>
-					</select>
-					<div class="pagination">
-						<a href="#" class="first" data-action="first">&laquo;</a>
-						<a href="#" class="previous" data-action="previous">&lsaquo;</a>
-						<input type="text" readonly="readonly" data-max-page="10" />
-						<a href="#" class="next" data-action="next">&rsaquo;</a>
-						<a href="#" class="last" data-action="last">&raquo;</a>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th data-sort="string" data-type="name">siteId <i class="fa fa-sort" aria-hidden="true"></i> </th>
+									<th data-sort="string" data-type="status">Location <i class="fa fa-sort" aria-hidden="true"></i> </th>
+									<th data-sort="string">GeoCodedLocation <i class="fa fa-sort" aria-hidden="true"></th>
+									<th data-sort="string">State <i class="fa fa-sort" aria-hidden="true"></th>
+									<th data-sort="string">Postal Code <i class="fa fa-sort" aria-hidden="true"></th>
+									<th>Location on MAP</th>
+									<th data-sort="string">Start Date <i class="fa fa-sort" aria-hidden="true"></i></th>
+									<th data-sort="string">End Date <i class="fa fa-sort" aria-hidden="true"></i></th>
+								</tr>
+							</thead>
+							<tbody id="job-list">
+							</tbody>
+						</table>
 					</div>
-				</nav>
+					<nav class="text-center">
+						<div class="limitData pull-right">
+							<label for="pagination-limit">Pagination Limit</label>
+							<select class="form-control" id="pagination-limit">
+								<option value="10">10</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+								<option value="40">40</option>
+								<option value="50">50</option>
+								<option value="60">60</option>
+								<option value="70">70</option>
+								<option value="80">80</option>
+								<option value="90">90</option>
+								<option value="100">100</option>
+								<option value="200">200</option>
+								<option value="300">300</option>
+								<option value="400">400</option>
+								<option value="500">500</option>
+							</select>
+						</div>
+						<div class="pagination">
+							<a href="#" class="first" data-action="first">&laquo;</a>
+							<a href="#" class="previous" data-action="previous">&lsaquo;</a>
+							<input type="text" readonly="readonly" data-max-page="10" />
+							<a href="#" class="next" data-action="next">&rsaquo;</a>
+							<a href="#" class="last" data-action="last">&raquo;</a>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+
+<div class="modal fade modalalign" id="map-modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Location on Map</h4>
+			</div>
+			<div class="modal-body">
+				<div id="map-area" style="width: 100%; height: 400px;"></div>
 			</div>
 		</div>
 	</div>
-</section>
 </div>
-<div class="modal modalalign" id="map-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div id="map-area" style="width: 100%; height: 400px;"></div>
-		</div>
-	</div>
-</div>
+
 <script type="text/template" id="job-template">
 	<tr data-type="<%=jobtype%>">
 		<td class="siteId"><%=siteId%></td>
