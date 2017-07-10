@@ -5,7 +5,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: #F2F4F6;
-	overflow: hidden;
+	overflow: x-hidden;
 }
 .pad0 {
 	padding: 0px;
