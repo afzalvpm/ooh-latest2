@@ -28,7 +28,7 @@ $(function(){
     endDate: '2020/12/31',
     
   }
-  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
+  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('77d8a0b0-b7a1-4e8f-ad51-61f413feb685', 'rqgJTOIfusC6IqQFNAaAinX2VvEyZP0V1E4d');
   kumulos_init.call('mapdropdowndata',{jwt_token:localStorage['ooh-jwt-token']},function(res){
     var response = res[0]
     var jobtype = response['jobtype']
@@ -77,7 +77,7 @@ $(function(){
     
     for (var key in state) {
       if (state.hasOwnProperty(key)) {
-        var html = '<option data-value="'+state[key]+'" value="'+state[key]+'">'+state[key]+'</li>';
+        var html = '<option data-value="'+state[key]+'" value="'+state[key]['state']+'">'+state[key]['state']+'</li>';
         $("#state-filter").append(html)
         // $(".filter-dropdown[data-type='state']").closest(".btn-group").find(".dropdown-menu").append(html)
       }
@@ -87,7 +87,7 @@ $(function(){
     for (var key in postalcode) {
       if (postalcode.hasOwnProperty(key)) {
         if(postalcode[key] !=null){
-          var html = '<option data-value="'+postalcode[key]+'" value="'+postalcode[key]+'">'+postalcode[key]+'</li>';
+          var html = '<option data-value="'+postalcode[key]['postalcode']+'" value="'+postalcode[key]['postalcode']+'">'+postalcode[key]['postalcode']+'</li>';
           $("#postalcode-filter").append(html)
         }
       }
@@ -114,20 +114,6 @@ $(function(){
     }
     $("#status-filter").multiselect({includeSelectAllOption: true,selectAllText: 'Select All',nonSelectedText: 'Status'  });
   })
-  // var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
-  
-  // kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
-  //   alert("SSJSJ")
-  //   for(i=0;i<res.length;i++){
-  //     var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
-  //     var marker = L.marker([res[i].latitude, res[i].longitude],{iconUrl: ""}).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
-  //       this.openPopup();
-  //     }).on('mouseout', function (e) {
-  //       this.closePopup();
-  //     })
-  //     current_markers.push(marker)
-  //   }
-  // });
 });
 
 
@@ -149,7 +135,7 @@ $(document).on("click","#search-job-by-name",function(){
   $(".filter-dropdown").not(".maptype-dropdown").closest(".btn-group").find(".dropdown-menu li.active").removeClass("active")
   $(".filter-dropdown").not(".maptype-dropdown").closest(".btn-group").find(".dropdown-menu li[data-value='']").addClass("active")
   var is_cluster = $(".filter-dropdown[data-type='maptype']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value").length
-  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
+  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('77d8a0b0-b7a1-4e8f-ad51-61f413feb685', 'rqgJTOIfusC6IqQFNAaAinX2VvEyZP0V1E4d');
   kumulos_init.call('mapsearchbox',post_data,function(res){
     if(!is_cluster){
      for(i=0;i<res.length;i++){
@@ -195,7 +181,7 @@ $(document).on("click","#clear-search",function(){
     endDate: '2020/12/31',
   }
   var is_cluster = $(".filter-dropdown[data-type='maptype']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value").length
-  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
+  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('77d8a0b0-b7a1-4e8f-ad51-61f413feb685', 'rqgJTOIfusC6IqQFNAaAinX2VvEyZP0V1E4d');
   kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
     if(!is_cluster){
      for(i=0;i<res.length;i++){
@@ -240,24 +226,25 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
     map.removeLayer(current_markers[i]);
     // map.removeLayer(markers);
   }
-  map.removeLayer(markers);
+  // map.removeLayer(markers);
   markers.clearLayers();
   var post_data = {
-    jobtype:$(".filter-dropdown[data-type='jobtype']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
-    inspectionid:$(".filter-dropdown[data-type='inspectionid']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value"),
-    state:$(".filter-dropdown[data-type='state']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
-    postalcode:$(".filter-dropdown[data-type='postalcode']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
-    contractor:$(".filter-dropdown[data-type='contractor']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
-    campaign:$(".filter-dropdown[data-type='campaign']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
-    status:$(".filter-dropdown[data-type='status']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
-    error:$(".filter-dropdown[data-type='errors']").closest(".btn-group").find(" .dropdown-menu li.active").attr("data-value"),
+    jobtype:$("#jobtype-filter").val().length?$("#jobtype-filter").val():"",
+    inspectionid:$("#inspectionid-filter").val().length?$("#inspectionid-filter").val():"",
+    state:$("#state-filter").val().length?$("#state-filter").val():"",
+    postalcode:$("#postalcode-filter").val().length?$("#postalcode-filter").val():"",
+    contractor:$("#contractor-filter").val().length?$("#contractor-filter").val():"",
+    campaign:$("#campaign-filter").val().length?$("#campaign-filter").val():"",
+    status:$("#status-filter").val().length?$("#status-filter").val():"",
+    error:$("#errors-filter").val().length?$("#errors-filter").val():"",
     startdate:startdate,
     enddate:enddate
     
   }
   var is_cluster = $(".filter-dropdown[data-type='maptype']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value").length
-  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
+  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('77d8a0b0-b7a1-4e8f-ad51-61f413feb685', 'rqgJTOIfusC6IqQFNAaAinX2VvEyZP0V1E4d');
   kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
+    console.log(res)
     if(!is_cluster){
       L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v9').addTo(map);
       for(i=0;i<res.length;i++){
@@ -287,6 +274,71 @@ $(document).on("click",".button-section .dropdown-menu li",function(e){
 
 
 })
-$('input[name="daterange"]').on("change",function(){
-  $(".button-section .dropdown-menu li")[0].click()
+$('input[name="daterange"]').on("change",function(e){
+  $(".button-section .dropdown-menu li.active").click()
+})
+
+$(".button-section").on("change",".dropdown-menu input",function(e){
+  e.preventDefault();
+  var daterange_value = $("#daterange").val().replace(/\s/g, '');
+  var startdate = "";
+  var enddate = "";
+  if(daterange_value!="" && daterange_value.indexOf("-")>-1){
+    startdate = daterange_value.split("-")[0]
+    enddate = daterange_value.split("-")[1]
+  }
+  for(i=0;i<current_markers.length;i++){
+    map.removeLayer(current_markers[i]);
+    // map.removeLayer(markers);
+  }
+  // map.removeLayer(markers);
+  markers.clearLayers();
+  var post_data = {
+    jobtype:$("#jobtype-filter").val().length?$("#jobtype-filter").val():"",
+    inspectionid:$("#inspectionid-filter").val().length?$("#inspectionid-filter").val():"",
+    state:$("#state-filter").val().length?$("#state-filter").val():"",
+    postalcode:$("#postalcode-filter").val().length?$("#postalcode-filter").val():"",
+    contractor:$("#contractor-filter").val().length?$("#contractor-filter").val():"",
+    campaign:$("#campaign-filter").val().length?$("#campaign-filter").val():"",
+    status:$("#status-filter").val().length?$("#status-filter").val():"",
+    error:$("#errors-filter").val().length?$("#errors-filter").val():"",
+    startdate:startdate,
+    enddate:enddate
+    
+  }
+  var is_cluster = $(".filter-dropdown[data-type='maptype']").closest(".btn-group").find(".dropdown-menu li.active").attr("data-value").length
+  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('77d8a0b0-b7a1-4e8f-ad51-61f413feb685', 'rqgJTOIfusC6IqQFNAaAinX2VvEyZP0V1E4d');
+  kumulos_init.call('mapviewdropdown',{param:JSON.stringify(post_data),jwt_token:localStorage['ooh-jwt-token']},function(res){
+    console.log(res)
+    if(!is_cluster){
+      L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v9').addTo(map);
+      for(i=0;i<res.length;i++){
+        var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+        var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
+          this.openPopup();
+        }).on('mouseout', function (e) {
+          this.closePopup();
+        })
+        current_markers.push(marker)
+        var maptype = $("input[name='map-type']").val()
+      }
+
+    }else{
+      L.mapbox.styleLayer('mapbox://styles/mapbox/dark-v9').addTo(map);
+      for(i=0;i<res.length;i++){
+        var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+        var marker = L.marker(new L.LatLng(res[i].latitude, res[i].longitude), {
+          icon: L.mapbox.marker.icon({ 'marker-color': "#fff"}),
+          title: "Map View"
+        }).on('mouseover', function (e) {
+          this.openPopup();
+        }).on('mouseout', function (e) {
+          this.closePopup();
+        })
+        markers.addLayer(marker);
+      }
+      map.addLayer(markers);
+      cluster_marker = markers
+    }
+  })
 })
