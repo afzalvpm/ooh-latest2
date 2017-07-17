@@ -288,30 +288,6 @@ $(".download-data").on("click",function(){
 	kumulos_init.call('cmptdjobsreport',{jwt_token:localStorage['ooh-jwt-token']},function(res){
 		console.log(res)
 		var coloumns_list = {columnStyles: {
-    // suburb: {columnWidth: 100},
-    // siteId: {columnWidth: 40},
-    // client: {columnWidth: 40},
-    // contractor: {columnWidth: 40},
-    // start_date: {columnWidth: 40},
-    // end_date: {columnWidth: 40},
-
-    // jobID: {columnWidth: 280},
-    // name: {columnWidth: 280},
-    // applat: {columnWidth: 280},
-    // applong: {columnWidth: 180},
-    // appsubrub: {columnWidth: 280},
-    // appaddress: {columnWidth: 280},
-    // zipCode: {columnWidth: 280},
-    // jobtype: {columnWidth: 280},
-    // proximityCheck: {columnWidth: 280},
-    // shareofVoiceCheck: {columnWidth: 280},
-    // appnotes: {columnWidth: 180},
-    // 17: {columnWidth: 280},
-    // 18: {columnWidth: 280},
-    // 19: {columnWidth: 280},
-    // 20: {columnWidth: 280},
-    // 21: {columnWidth: 180},
-    // etc
 }}
 var columns = [{
 	title:"Suburb",key:"suburb"},

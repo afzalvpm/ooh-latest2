@@ -88,11 +88,10 @@ router.get('/user-landing/', function(req, res, next) {
 
 router.get('/verify-email/', function(req, res, next) {
 	var email_id = req.param('email');
-	var code = req.param('code');
-	http.get("http://api.ipify.org?format=json", function(res) {
-
-	})
-	res.render('signin', { title: ''});
+	res.render('verify-email', { title: 'OOH'});
+});
+router.get('/resend-verification-mail/', function(req, res, next) {
+	res.render('resend-email', { title: 'OOH'});
 });
 
 module.exports = router;

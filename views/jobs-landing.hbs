@@ -24,6 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="css/profile.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="css/new.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jqueryscript.net/demo/Lightweight-Interactive-Pagination-Plugin-jQuery-jqPagination/css/jqpagination.css">
 
 </head>
 <body>
@@ -190,7 +191,7 @@
 								</tbody>
 							</table>
 						</div>
-						<nav class="text-center">
+						<nav class="text-center pagination-section">
 							<div class="limitData pull-right">
 							<label for="pagination-limit">Pagination Limit</label>
 							<select class="form-control" id="pagination-limit">
@@ -257,11 +258,39 @@
 					<div class="col-md-12 v-data" id="auditor-list">	
 						
 					</div>
-					<nav class="text-center">
+					<nav class="text-center ">
 						<ul class="pagination" data-type="user">
 							
 						</ul>
 					</nav>
+					<nav class="text-center auditor-pagination-section">
+							<div class="limitData pull-right">
+							<label for="pagination-limit">Pagination Limit</label>
+							<select class="form-control" id="auditor-pagination-limit">
+								<option value="10">10</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+								<option value="40">40</option>
+								<option value="50">50</option>
+								<option value="60">60</option>
+								<option value="70">70</option>
+								<option value="80">80</option>
+								<option value="90">90</option>
+								<option value="100">100</option>
+								<option value="200">200</option>
+								<option value="300">300</option>
+								<option value="400">400</option>
+								<option value="500">500</option>
+							</select>
+						</div>
+						<div class="pagination">
+							<a href="#" class="first" data-action="first">&laquo;</a>
+							<a href="#" class="previous" data-action="previous">&lsaquo;</a>
+							<input type="text" readonly="readonly" data-max-page="10" />
+							<a href="#" class="next" data-action="next">&rsaquo;</a>
+							<a href="#" class="last" data-action="last">&raquo;</a>
+						</div>
+						</nav>
 				</div>
 			</div>
 		</div>
@@ -329,6 +358,7 @@
 			<script type="text/javascript" src="http://tablesorter.com/__jquery.tablesorter.min.js"></script>
 			<!-- tablesorter widgets (optional) --> --}}
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/stupidtable/1.0.3/stupidtable.min.js"></script>
+			<script src="http://www.jqueryscript.net/demo/Lightweight-Interactive-Pagination-Plugin-jQuery-jqPagination/js/jquery.jqpagination.js"></script>
 			<script src="js/api_scripts/job-landing.js"></script>
 			<script src="js/api_scripts/user_data.js"></script>
 

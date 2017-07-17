@@ -21,6 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="css/signin.css">
 	<link rel="stylesheet" type="text/css" href="css/jobs.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jqueryscript.net/demo/Lightweight-Interactive-Pagination-Plugin-jQuery-jqPagination/css/jqpagination.css">
 	<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
 	<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
 </head>
@@ -174,7 +175,7 @@
 							</tbody>
 						</table>
 					</div>
-					<nav class="text-center">
+					<nav class="text-center pagination-section">
 						<div class="limitData pull-right">
 							<label for="pagination-limit">Pagination Limit</label>
 							<select class="form-control" id="pagination-limit">
@@ -227,7 +228,7 @@
 		</td>
 		<td class="jobId"><%=jobid%></td>
 		<td class="siteId"><%=siteId%></td>
-		<td class="location"><%=location%></td>
+		<td class="location"><%=location1%></td>
 		<td><%=state%></td>
 		<td><%=PostalCode%></td>
 		<td class="view-map" data-latitude="<%=latitude%>" data-longitude="<%=longitude%>" data-auditorlatitude="<%=auditorlatitude%>" data-auditorlongitude="<%=auditorlongitude%>">
@@ -267,6 +268,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/stupidtable/1.0.3/stupidtable.min.js"></script>
 		<script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyC7lEhWOW6t8D5yWL0FwnL_Wa7QgyVNe7o&libraries=places'></script>
 		<script src="js/vendor/location.picker.min.js"></script>
+		<script src="http://www.jqueryscript.net/demo/Lightweight-Interactive-Pagination-Plugin-jQuery-jqPagination/js/jquery.jqpagination.js"></script>
 		<script src="js/api_scripts/jobs-progress.js"></script>
 		<script src="js/api_scripts/user_data.js"></script>
 

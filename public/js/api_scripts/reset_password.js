@@ -28,12 +28,14 @@ $('#password-reset-form').validate({
 	},
 
 	submitHandler: function(form) {
+		var url_string = new URL(window.location.href);
+		var url = new URL(url_string);
+		var code = url.searchParams.get("Code");
 		var post_data = {
-			encrypted_code:"shjhjsjhjdhhsjhjshjshjs",
+			encrypted_code:code,
 			password:$(form).find("#password-field").val(),
 			jwt_token:localStorage['ooh-jwt-token'],
 			usertype:'ADMIN'
-
 		}
 		console.log(post_data)
 		var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');

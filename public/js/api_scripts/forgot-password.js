@@ -10,7 +10,6 @@ $('#forgot-password-form').validate({
 		email:{
 			required:"Please Enter email id",
 			email:"Incorrect Email id",
-			is_email_available:"Email id is already taken"
 		},
 	},
 
@@ -24,12 +23,13 @@ $('#forgot-password-form').validate({
 		}
 		var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
 		kumulos_init.call('userforgotpwd',post_data,function(res){
-			if(res){
-				$("#signup-form .error-display").text("Account Has been created successfully")
+			console.log(res)
+			if(res[0].status == "success"){
+				$("#forgot-password-form .error-display").text(res[0].message)
 			}else{
-				$("#signup-form .error-display").text("Please Check email id or Password")
+				$("#forgot-password-form .error-display").text(res[0].message)
 				setTimeout(function(){
-					$("#signup-form .error-display").text("")
+					$("#forgot-password-form .error-display").text("")
 				},4000)
 			}
 		});

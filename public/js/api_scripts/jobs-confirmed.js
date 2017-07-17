@@ -63,8 +63,7 @@ function s2ab(s) {
 }
 
 function load_completed_jobs(){
-	var numberofrecs = 9;
-	var max_pagination_elements = 5;
+	var numberofrecs= $("#pagination-limit").val();
 	var post_data = {
 		status:"completed",
 		numberofrec:numberofrecs,
@@ -94,25 +93,24 @@ function load_completed_jobs(){
 			if(pagination_limit.toString().indexOf(".")>0 && pagination_limit>0){
 				no_elements +=1 ;
 			}
-			if(no_elements>1){
-				var element_array = [];
-				var template = _.template($('#pagination-template').html());
-				for(i=0;i<no_elements;i++){
-					var is_hidden = max_pagination_elements > i ? false : true;
-					element_array.push({label:i+1,index:i,is_hidden:is_hidden});
+			if(no_elements>1 && job_array_length){
+				$('.pagination-section .pagination').find("input").attr("data-max-page",no_elements)
+			$('.pagination-section .pagination').jqPagination({
+				paged: function(page) {
+					update_jobs(page-1);
 				}
-				$(".pagination").html(template({items:element_array}));
+			});
 
-
+			}else{
+				$(".pagination-section").addClass("hide");
 			}
 		})
 	}
 }
 
-$(document).on("click",".pagination-element",function(){
-	$(".pagination-element").removeClass("active")
-	var numberofrec = 9;
-	var offset = parseInt($(this).attr("data-index"))*numberofrec;
+function update_jobs(page){
+	var numberofrec=$("#pagination-limit").val();
+	var offset = parseInt(page)*numberofrec;
 	$(this).addClass("active")
 	var post_data = {
 		status:"completed",
@@ -144,38 +142,8 @@ $(document).on("click",".pagination-element",function(){
 			}
 		})
 	}
-})
-$(document).on("click",".pagination .last-element",function(e){
-	e.preventDefault();
-	$('.pagination > .pagination-element').addClass("hide");
-	$('.pagination > .pagination-element').slice(-5).removeClass("hide");
+}
 
-	$('.pagination > .pagination-element').not(".hide").last().click()
-})
-$(document).on("click",".pagination .first-element",function(e){
-	e.preventDefault();
-	$('.pagination > .pagination-element').addClass("hide");
-	$('.pagination > .pagination-element').slice(0,5).removeClass("hide");
-	$('.pagination > .pagination-element').not(".hide").first().click()
-})
-$(document).on("click",".pagination .previous-element",function(e){
-	e.preventDefault();
-	var current_element = $(".pagination-element.active")
-	if(current_element.prev().hasClass("pagination-element")){
-		if($(".pagination > .pagination-element").not(".hide").length>5)
-			$(".pagination > .pagination-element").not(".hide").last().addClass("hide")
-		current_element.prev().removeClass("hide").addClass("active").click()
-	}
-})
-$(document).on("click",".pagination .next-element",function(e){
-	e.preventDefault();
-	var current_element = $(".pagination-element.active")
-	if(current_element.next().hasClass("pagination-element")){
-		if($(".pagination > .pagination-element").not(".hide").length>5)
-			$(".pagination > .pagination-element").not(".hide").first().addClass("hide")
-		current_element.next().removeClass("hide").addClass("active").click()
-	}
-})
 
 
 

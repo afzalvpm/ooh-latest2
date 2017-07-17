@@ -20,6 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="css/button.css">
 	<link rel="stylesheet" type="text/css" href="css/signin.css">
 	<link rel="stylesheet" type="text/css" href="css/jobs.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jqueryscript.net/demo/Lightweight-Interactive-Pagination-Plugin-jQuery-jqPagination/css/jqpagination.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 
 </head>
@@ -210,7 +211,7 @@
 								</tbody>
 							</table>
 						</div>
-						<nav class="text-center">
+						<nav class="text-center pagination-section">
 							<div class="limitData pull-right">
 							<label for="pagination-limit">Pagination Limit</label>
 							<select class="form-control" id="pagination-limit">
@@ -269,25 +270,6 @@
 			<td><%=completeddate%></td>
 		</tr>
 	</script>
-	<script type="text/template" id="pagination-template">
-		<li class="first-element" data-action="first"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
-		<li class="previous-element"><a href="#" aria-label="Previous" data-action="previous"><span aria-hidden="true">«</span></a></li>
-		<input class="hide" type="text" readonly="readonly" data-max-page="<%=items.length%>"/>
-		<%_.each(items, function(item) {%>
-		<%if(item.index ==0){%>
-		<li class="pagination-element active" data-index="<%=item.index%>">
-			<%}else{%>
-			<%if(item.is_hidden){%>
-			<li class="pagination-element hide" data-index="<%=item.index%>">
-				<%}else{%>
-				<li class="pagination-element" data-index="<%=item.index%>">
-					<%}}%>
-					<a href="#"><%=item.label%></a>
-				</li>
-				<%})%>
-				<li class="next-element"><a href="#" aria-label="Next" data-action="next"><span aria-hidden="true">»</span></a></li>
-				<li class="last-element" data-action="last"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
-			</script>
 			<script src="js/vendor/jquery-3.1.0.min.js"></script>
 			<script src="js/vendor/bootstrap.min.js"></script>
 			<script src="js/scripts.js"></script>
@@ -300,7 +282,7 @@
 			<script src="js/simple-excel.js"></script>
 			<script src="js/ajax_helper.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/stupidtable/1.0.3/stupidtable.min.js"></script>
-
+			<script src="http://www.jqueryscript.net/demo/Lightweight-Interactive-Pagination-Plugin-jQuery-jqPagination/js/jquery.jqpagination.js"></script>
 			<script src="js/api_scripts/jobs-confirmed.js"></script>
 			<script src="js/api_scripts/user_data.js"></script>
 
