@@ -30,7 +30,7 @@ $('#signin-form').validate({
 			localStorage['ooh-jwt-token'] = res[0].token
 			$("#signin-form .error-display").text("Successfully logged in")
 			setTimeout(function(){
-				// window.location= "/new-inspection"
+				window.location= "/new-inspection"
 			},1000)
 		}else if(res[0].status == "Notverified"){
 			$(".resend-verification").removeClass("hide");

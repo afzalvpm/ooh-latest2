@@ -30,7 +30,10 @@ $(function(){
 $(".resend-verification").on("click",function(e){
 	e.preventDefault();
 	var that = this
-	var post_data = {email:$("#email-field").val(),
+	var url_string = new URL(window.location.href);
+	var url = new URL(url_string);
+	var email = url.searchParams.get("email");
+	var post_data = {email:email,
 		usertype:'ADMIN'
 	}
 	var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('77d8a0b0-b7a1-4e8f-ad51-61f413feb685', 'rqgJTOIfusC6IqQFNAaAinX2VvEyZP0V1E4d');
